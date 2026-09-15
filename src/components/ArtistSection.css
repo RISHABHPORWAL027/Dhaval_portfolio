@@ -1,0 +1,183 @@
+.artist-section {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding: 120px 0;
+}
+
+.artist-container {
+  display: flex;
+  gap: 80px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.artist-image-container {
+  flex: 1;
+  position: relative;
+  max-width: 650px;
+  overflow: hidden;
+  display: block; /* Since it's now an <a> tag */
+  cursor: pointer;
+}
+
+.artist-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.artist-image-container:hover .artist-image {
+  transform: scale(1.05);
+}
+
+.red-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(230, 0, 0, 0.4);
+  mix-blend-mode: color;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.artist-image-container:hover .red-overlay {
+  opacity: 0; /* Reveal original image colors on hover */
+}
+
+.artist-content {
+  flex: 1;
+  padding-left: 20px;
+}
+
+.artist-reveal-heading {
+  font-family: var(--font-space);
+  font-size: 80px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -2.4px;
+  text-transform: uppercase;
+  margin-bottom: 60px;
+}
+
+.artist-details {
+  margin-top: 40px;
+}
+
+.red-subtitle {
+  color: var(--color-red);
+  font-family: var(--font-space);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.artist-details h3 {
+  font-family: var(--font-space);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0px;
+  margin-bottom: 16px;
+}
+
+.artist-details p {
+  color: #999;
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 450px;
+  margin-bottom: 40px;
+}
+
+.artist-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.listen-btn {
+  background-color: var(--color-red);
+  color: #fff;
+  border: none;
+  padding: 16px 32px;
+  font-family: var(--font-space);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.listen-btn:hover {
+  background-color: #c40000;
+}
+
+.explore-link {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 1px;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  transition: opacity 0.3s ease;
+}
+
+.explore-link:hover {
+  opacity: 0.8;
+}
+
+.explore-link .arrow {
+  font-size: 16px;
+  font-weight: 400;
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.explore-link:hover .arrow {
+  transform: translate(4px, -4px);
+}
+
+@media (max-width: 1024px) {
+  .artist-container {
+    flex-direction: column;
+    gap: 60px;
+  }
+  .artist-image-container {
+    max-width: 100%;
+  }
+  .artist-reveal-heading {
+    font-size: 60px;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .artist-section {
+    padding: 80px 0;
+  }
+  .artist-content {
+    padding-left: 0;
+  }
+  .artist-reveal-heading {
+    font-size: 42px;
+    letter-spacing: -1.5px;
+  }
+  .artist-details h3 {
+    font-size: 22px;
+  }
+  .artist-details p {
+    font-size: 16px;
+  }
+  .top-label {
+    margin-bottom: 40px;
+  }
+}

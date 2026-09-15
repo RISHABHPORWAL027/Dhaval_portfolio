@@ -1,0 +1,150 @@
+.ventures-section {
+  padding: 120px 0;
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+.ventures-container {
+  display: flex;
+  gap: 80px;
+}
+
+.ventures-content {
+  flex: 1;
+  padding-right: 40px;
+}
+
+.section-label {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+}
+
+.text-red {
+  color: var(--color-red);
+}
+
+.text-black {
+  color: var(--color-black);
+}
+
+.list-num {
+  font-family: var(--font-space);
+  font-size: 14px;
+  color: rgba(5, 5, 5, 0.40);
+  font-weight: 700;
+  letter-spacing: 0;
+  padding-top: 0;
+}
+
+.list-text {
+  flex: 1;
+}
+
+.ventures-content h2 {
+  font-family: var(--font-space);
+  font-size: 80px;
+  line-height: 0.95;
+  letter-spacing: -3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.ventures-content p {
+  color: #666;
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 450px;
+  margin-bottom: 50px;
+}
+
+.ventures-link {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--color-black);
+  padding-bottom: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ventures-link .arrow {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.ventures-list-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ventures-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ventures-list li {
+  display: flex;
+  padding: 40px 0;
+  align-items: center; /* Vertically center */
+  gap: 32px;
+  align-self: stretch;
+  border-top: 0.667px solid rgba(5, 5, 5, 0.10);
+
+  color: #050505;
+  font-family: var(--font-space);
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 60px; /* 100% */
+  letter-spacing: -1.5px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.ventures-list li:hover {
+  color: var(--color-red);
+}
+
+@media (max-width: 1024px) {
+  .ventures-container {
+    flex-direction: column;
+    gap: 60px;
+  }
+  .ventures-list-container {
+    padding-right: 0;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  .ventures-content h2 {
+    font-size: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ventures-section {
+    padding: 80px 0;
+  }
+  .ventures-content h2 {
+    font-size: 42px;
+    letter-spacing: -1.5px;
+  }
+  .ventures-list li {
+    font-size: 36px;
+    line-height: 1.2;
+    padding: 24px 0;
+    gap: 20px;
+  }
+  .list-num {
+    padding-top: 8px; /* Realigh for smaller text */
+  }
+}
