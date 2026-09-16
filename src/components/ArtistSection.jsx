@@ -31,7 +31,7 @@ const ArtistSection = () => {
         </div>
         
         <div className="artist-container">
-          <a href="#music" className="artist-image-container">
+          <a href="#artist" className="artist-image-container">
             <img 
               src={heroImage} 
               alt="Gujarati Pop Artist" 
@@ -57,8 +57,8 @@ const ArtistSection = () => {
               </p>
               
               <div className="artist-actions">
-                <button className="listen-btn">LISTEN TO THE LATEST RELEASE</button>
-                <MagneticButton href="#music" text="Explore Music" lightTheme={true} />
+                <button className="listen-btn" onClick={() => window.location.hash = '#artist'}>LISTEN TO THE LATEST RELEASE</button>
+                <MagneticButton href="#artist" text="Explore Music" lightTheme={true} />
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 
-const AnimatedCounter = ({ end, suffix = '', duration = 4000 }) => {
+const AnimatedCounter = ({ end, suffix = '', decimals = 0, duration = 2500 }) => {
   const [count, setCount] = useState(0);
   const countRef = useRef(null);
   
@@ -14,7 +14,8 @@ const AnimatedCounter = ({ end, suffix = '', duration = 4000 }) => {
             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
             // using easeOutQuad for smoother animation
             const easeOutProgress = 1 - (1 - progress) * (1 - progress);
-            setCount(Math.floor(easeOutProgress * end));
+            const currentVal = easeOutProgress * end;
+            setCount(decimals > 0 ? currentVal.toFixed(decimals) : Math.floor(currentVal));
             if (progress < 1) {
               window.requestAnimationFrame(step);
             }
@@ -31,7 +32,7 @@ const AnimatedCounter = ({ end, suffix = '', duration = 4000 }) => {
     }
     
     return () => observer.disconnect();
-  }, [end, duration]);
+  }, [end, duration, decimals]);
   
   return <span ref={countRef}>{count}{suffix}</span>;
 };

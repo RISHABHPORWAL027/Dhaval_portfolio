@@ -7,6 +7,11 @@
   overflow: hidden;
 }
 
+.footer-section.no-cta {
+  padding-top: 0;
+  padding-bottom: 40px;
+}
+
 .footer-cta {
   margin-bottom: clamp(60px, 8vw, 120px);
 }

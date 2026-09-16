@@ -7,6 +7,7 @@ import ArtistSection from './components/ArtistSection'
 import Marquee from './components/Marquee'
 import Footer from './components/Footer'
 import FounderPage from './components/FounderPage'
+import ArtistPage from './components/ArtistPage'
 
 function App() {
   const [currentHash, setCurrentHash] = useState(window.location.hash || '#about');
@@ -16,7 +17,7 @@ function App() {
       const hash = window.location.hash || '#about';
       setCurrentHash(hash);
       
-      if (hash === '#founder' || hash === '#about' || hash === '') {
+      if (hash === '#founder' || hash === '#artist' || hash === '#about' || hash === '') {
         window.scrollTo(0, 0);
       }
     };
@@ -30,6 +31,8 @@ function App() {
       <Navbar />
       {currentHash === '#founder' ? (
         <FounderPage />
+      ) : currentHash === '#artist' ? (
+        <ArtistPage />
       ) : (
         <>
           <HeroSection />
@@ -39,7 +42,7 @@ function App() {
           <Marquee />
         </>
       )}
-      <Footer />
+      <Footer hideCta={currentHash === '#artist'} />
     </>
   )
 }
