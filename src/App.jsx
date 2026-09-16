@@ -17,7 +17,7 @@ function App() {
       const hash = window.location.hash || '#about';
       setCurrentHash(hash);
       
-      if (hash === '#founder' || hash === '#artist' || hash === '#about' || hash === '') {
+      if (hash === '#founder' || hash === '#portfolio' || hash === '#artist' || hash === '#about' || hash === '') {
         window.scrollTo(0, 0);
       }
     };
@@ -26,10 +26,12 @@ function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  const isFounderPage = currentHash === '#founder' || currentHash === '#portfolio';
+
   return (
     <>
       <Navbar />
-      {currentHash === '#founder' ? (
+      {isFounderPage ? (
         <FounderPage />
       ) : currentHash === '#artist' ? (
         <ArtistPage />
@@ -44,7 +46,7 @@ function App() {
       )}
       <Footer hideCta={currentHash === '#artist'} />
     </>
-  )
+  );
 }
 
 export default App

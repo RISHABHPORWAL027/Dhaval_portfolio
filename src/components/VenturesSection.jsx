@@ -37,7 +37,7 @@ const VenturesSection = () => {
             of turning ambitious ideas into sustainable<br />
             realities.
           </p>
-          <MagneticButton href="#portfolio" text="View founder profile" />
+          <MagneticButton href="#founder" text="View founder profile" />
         </div>
         <div className="ventures-list-container" ref={listRef}>
           <ul className="ventures-list">
