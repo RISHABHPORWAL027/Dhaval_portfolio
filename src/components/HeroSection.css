@@ -1,9 +1,32 @@
+.hero-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
 .hero-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 80px;
   padding-bottom: 120px;
+}
+
+.hero-bg-snake {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 200vw;
+  transform: translateY(-50%);
+  z-index: -1;
+  pointer-events: none;
+  animation: floatSnake 15s linear infinite;
+}
+
+@keyframes floatSnake {
+  0% { transform: translate(0, -50%); }
+  50% { transform: translate(-10%, -60%); }
+  100% { transform: translate(0, -50%); }
 }
 
 .hero-content {
@@ -145,9 +168,10 @@
 
 @media (max-width: 768px) {
   .hero-heading {
-    font-size: 56px;
+    font-size: clamp(32px, 11vw, 56px);
     line-height: 1.1;
     letter-spacing: -2px;
+    white-space: nowrap;
   }
   .hero-description {
     font-size: 18px;

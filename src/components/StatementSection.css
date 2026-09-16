@@ -98,9 +98,10 @@
     padding: 80px 0;
   }
   .statement-content h2, .highlight-red {
-    font-size: 36px;
+    font-size: clamp(18px, 6vw, 36px);
     line-height: 1.2;
     margin-bottom: 24px;
+    white-space: nowrap;
   }
   .statement-content p {
     font-size: 18px;

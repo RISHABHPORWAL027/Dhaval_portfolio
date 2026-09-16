@@ -32,11 +32,16 @@ const TypewriterText = ({ text, className }) => {
       viewport={{ once: true, amount: 0.5 }}
       className={className}
     >
-      {letters.map((letter, index) => (
-        <motion.span variants={child} key={index} style={{ display: 'inline-block' }}>
-          {letter === ' ' ? '\u00A0' : letter}
-        </motion.span>
-      ))}
+      {letters.map((letter, index) => {
+        if (letter === '\n') {
+          return <br key={index} />;
+        }
+        return (
+          <motion.span variants={child} key={index} style={{ display: 'inline-block' }}>
+            {letter === ' ' ? '\u00A0' : letter}
+          </motion.span>
+        );
+      })}
     </motion.span>
   );
 };

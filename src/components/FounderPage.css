@@ -1,0 +1,520 @@
+.founder-page {
+  width: 100%;
+  padding-top: 80px; /* same as hero */
+}
+
+.fp-section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.red-text {
+  color: var(--color-red);
+}
+
+.white-text {
+  color: var(--color-white);
+}
+
+.red-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-red);
+  margin-right: 12px;
+}
+
+/* Badges */
+.fp-badge {
+  display: inline-block;
+  background-color: var(--color-red);
+  color: var(--color-white);
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.fp-badge-outline {
+  background-color: transparent;
+  color: var(--color-black);
+  border: 1px solid #ddd;
+}
+
+.fp-badge-outline-red {
+  background-color: transparent;
+  color: var(--color-red);
+  border: 1px solid var(--color-red);
+}
+
+/* Hero Section */
+.fp-hero-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.fp-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 100px;
+}
+
+.fp-hero-left {
+  flex: 1;
+}
+
+.fp-hero-title {
+  font-family: var(--font-space);
+  font-size: 80px;
+  line-height: 1.05;
+  margin-bottom: 40px;
+  letter-spacing: -1.5px;
+}
+
+@media (max-width: 1024px) {
+  .fp-hero-title {
+    font-size: 60px;
+  }
+}
+
+.fp-hero-subtitle-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.fp-hero-subtitle {
+  font-size: 14px;
+  color: var(--color-black);
+  font-weight: 500;
+}
+
+.fp-hero-sub-sub {
+  color: var(--color-grey);
+  font-size: 12px;
+}
+
+.fp-hero-right {
+  margin-left: 40px;
+}
+
+@keyframes floatLogo {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+.fp-logo-img {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  border-radius: 50%;
+  animation: floatLogo 4s ease-in-out infinite;
+}
+
+/* Goals Section */
+.fp-goals {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 80px;
+  border-top: 1px solid #eaeaea;
+  padding-top: 80px;
+}
+
+.fp-goals-left {
+  flex: 1;
+  padding-right: 40px;
+}
+
+.fp-goals-left h2 {
+  font-family: var(--font-space);
+  font-size: 48px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.fp-goals-right {
+  flex: 0.6;
+}
+
+.fp-goals-right p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Origin Section */
+.fp-origin {
+  border-top: 1px solid #eaeaea;
+}
+
+.fp-origin-header {
+  margin-bottom: 40px;
+}
+
+.fp-section-title {
+  font-family: var(--font-space);
+  font-size: 40px;
+  margin-bottom: 40px;
+}
+
+.fp-origin-badge {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.fp-origin-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 60px;
+}
+
+.fp-origin-text {
+  flex: 0.35;
+}
+
+.fp-origin-text p {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.fp-origin-quotes {
+  flex: 0.65;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.fp-origin-quotes-row {
+  display: flex;
+  gap: 40px;
+}
+
+.fp-origin-quote-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.fp-quote-line {
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-red);
+  margin-bottom: 20px;
+}
+
+.fp-origin-quote-box h3 {
+  font-family: var(--font-space);
+  font-size: 28px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.fp-origin-placeholder {
+  flex: 1;
+  background-color: #e0e0e0;
+  min-height: 250px;
+}
+
+/* Black Background Section - Turning Point */
+.fp-black-bg {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding: 80px 0;
+  margin-top: 80px;
+}
+
+.fp-turning-point {
+  display: flex;
+  gap: 60px;
+  align-items: stretch;
+}
+
+.fp-tp-content {
+  flex: 0.7;
+}
+
+.fp-black-grid {
+  display: flex;
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.fp-black-col {
+  flex: 1;
+}
+
+.fp-col-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.fp-dark-line {
+  flex: 1;
+  height: 1px;
+  background-color: #333;
+}
+
+.fp-black-col p {
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.fp-tp-image {
+  flex: 0.3;
+  display: flex;
+}
+
+.fp-tall-placeholder {
+  width: 100%;
+  background-color: #e0e0e0;
+  min-height: 400px;
+}
+
+/* Approach Section */
+.fp-approach {
+  padding-top: 80px;
+}
+
+.fp-approach-title {
+  font-family: var(--font-space);
+  font-size: 64px;
+  line-height: 1;
+  margin-bottom: 24px;
+}
+
+.fp-approach-subtitle {
+  font-size: 16px;
+  color: #333;
+  max-width: 800px;
+  margin-bottom: 60px;
+  line-height: 1.5;
+}
+
+.fp-approach-quote {
+  font-family: var(--font-space);
+  font-size: 36px;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  max-width: 900px;
+}
+
+.fp-approach-desc {
+  font-size: 14px;
+  color: #555;
+  max-width: 700px;
+  margin-bottom: 60px;
+}
+
+.fp-approach-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 80px;
+  margin-bottom: 20px;
+}
+
+.fp-label {
+  display: flex;
+  align-items: center;
+}
+
+.fp-label-left h2 {
+  font-family: var(--font-space);
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.fp-label-right h2 {
+  font-family: var(--font-space);
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: right;
+}
+
+.fp-red-line-inline {
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-red);
+  margin-right: 20px;
+}
+
+.fp-huge-placeholder {
+  width: 100%;
+  height: 500px;
+  background-color: #e0e0e0;
+  margin-bottom: -100px; /* pull stats card up */
+  position: relative;
+  z-index: 1;
+}
+
+/* Stats Card */
+.fp-stats-card {
+  background-color: var(--color-black);
+  padding: 60px;
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.fp-stats-title {
+  font-family: var(--font-space);
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.fp-stats-desc {
+  color: #ccc;
+  font-size: 16px;
+  max-width: 600px;
+  margin-bottom: 40px;
+}
+
+.fp-stats-grid {
+  display: flex;
+  gap: 40px;
+  border-top: 1px solid #333;
+  padding-top: 40px;
+}
+
+.fp-stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.fp-stat-num {
+  color: var(--color-red);
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.fp-stat-text {
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Responsiveness */
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .fp-hero-title {
+    font-size: 60px;
+  }
+  .fp-approach-title {
+    font-size: 50px;
+  }
+  .fp-turning-point {
+    flex-direction: column;
+  }
+  .fp-origin-content {
+    flex-direction: column;
+  }
+  .fp-stats-card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .fp-hero {
+    flex-direction: column;
+    padding-bottom: 40px;
+    padding-top: 30px;
+  }
+  .fp-hero-right {
+    margin-left: 0;
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .fp-logo-img {
+    width: 250px;
+    height: 250px;
+  }
+  .fp-hero-title {
+    font-size: clamp(24px, 8vw, 42px);
+    white-space: nowrap;
+    margin-bottom: 20px;
+  }
+  .fp-goals {
+    flex-direction: column;
+  }
+  .fp-goals-left {
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+  .fp-goals-left h2 {
+    font-size: 32px;
+  }
+  .fp-origin-quotes {
+    width: 100%;
+    align-items: center;
+  }
+  .fp-origin-quotes-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+  .fp-origin-quote-box {
+    align-items: center;
+    width: 100%;
+  }
+  .fp-origin-quote-box h3 {
+    text-align: center;
+  }
+  .fp-quote-line {
+    margin: 0 auto 20px auto;
+  }
+  .fp-origin-placeholder {
+    width: 100%;
+    max-width: 400px;
+  }
+  .fp-black-grid {
+    flex-direction: column;
+  }
+  .fp-section-title {
+    font-size: clamp(20px, 6vw, 40px);
+    white-space: nowrap;
+  }
+  .fp-approach-title {
+    font-size: clamp(24px, 8vw, 40px);
+    white-space: nowrap;
+  }
+  .fp-approach-quote {
+    font-size: 24px;
+  }
+  .fp-approach-labels {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .fp-label-right h2 {
+    text-align: left;
+  }
+  .fp-stats-card {
+    padding: 30px;
+  }
+  .fp-stats-grid {
+    flex-direction: column;
+  }
+  .fp-stats-title {
+    font-size: clamp(20px, 7vw, 32px);
+  }
+}

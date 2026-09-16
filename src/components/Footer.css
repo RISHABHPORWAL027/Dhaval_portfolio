@@ -3,6 +3,8 @@
   color: var(--color-white);
   padding: 100px 0 40px 0;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .footer-cta {
@@ -120,7 +122,8 @@
     margin-bottom: 80px;
   }
   .footer-cta h2 {
-    font-size: 32px;
+    font-size: clamp(20px, 7vw, 32px);
+    white-space: nowrap;
   }
   .footer-links {
     flex-direction: column;

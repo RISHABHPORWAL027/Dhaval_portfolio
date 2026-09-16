@@ -135,7 +135,7 @@
     padding: 80px 0;
   }
   .ventures-content h2 {
-    font-size: 42px;
+    font-size: clamp(28px, 9vw, 42px);
     letter-spacing: -1.5px;
   }
   .ventures-list li {
