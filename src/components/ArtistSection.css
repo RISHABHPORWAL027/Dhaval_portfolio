@@ -1,7 +1,12 @@
 .artist-section {
   background-color: var(--color-black);
+  background-image: linear-gradient(180deg, rgba(10, 10, 10, 0.88) 0%, rgba(10, 10, 10, 0.94) 100%), url('../assets/bg-screen-1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: var(--color-white);
   padding: clamp(60px, 8vw, 120px) 0;
+  position: relative;
 }
 
 .artist-container {

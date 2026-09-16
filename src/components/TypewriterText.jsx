@@ -1,7 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-const TypewriterText = ({ text, className }) => {
+const TypewriterText = ({ text, className, loop = false, speed = 70, delay = 2000 }) => {
+  const [displayedText, setDisplayedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  // Continuous looping typewriter effect when loop=true
+  useEffect(() => {
+    if (!loop) return;
+
+    let timer;
+    const fullText = text || '';
+
+    if (!isDeleting && displayedText.length < fullText.length) {
+      timer = setTimeout(() => {
+        setDisplayedText(fullText.substring(0, displayedText.length + 1));
+      }, speed);
+    } else if (!isDeleting && displayedText.length === fullText.length) {
+      timer = setTimeout(() => {
+        setIsDeleting(true);
+      }, delay);
+    } else if (isDeleting && displayedText.length > 0) {
+      timer = setTimeout(() => {
+        setDisplayedText(fullText.substring(0, displayedText.length - 1));
+      }, speed / 2);
+    } else if (isDeleting && displayedText.length === 0) {
+      setIsDeleting(false);
+    }
+
+    return () => clearTimeout(timer);
+  }, [displayedText, isDeleting, loop, text, speed, delay]);
+
+  if (loop) {
+    return (
+      <span className={className} style={{ display: 'inline', wordBreak: 'keep-all', overflowWrap: 'normal' }}>
+        {displayedText}
+        <motion.span
+          animate={{ opacity: [1, 0, 1] }}
+          transition={{ duration: 0.8, repeat: Infinity, ease: 'linear' }}
+          style={{ display: 'inline-block', marginLeft: '2px', color: 'var(--color-red)', fontWeight: 800 }}
+        >
+          |
+        </motion.span>
+      </span>
+    );
+  }
+
+  // Standard Framer Motion staggered typewriter animation
   const container = {
     hidden: { opacity: 1 },
     visible: (i = 1) => ({
@@ -20,7 +65,6 @@ const TypewriterText = ({ text, className }) => {
     },
   };
 
-  // Split by newline if present to preserve deliberate line breaks
   const lines = (text || '').split('\n');
 
   return (

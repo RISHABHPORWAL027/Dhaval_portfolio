@@ -63,8 +63,11 @@
 .red-dot.small {
   width: 6px;
   height: 6px;
-  margin-left: 4px;
-  margin-bottom: 2px;
+  position: absolute;
+  left: calc(100% + 5px);
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
 }
 
 .footer-bottom {
@@ -100,8 +103,10 @@
 }
 
 .footer-links li a {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  position: relative;
   transition: color 0.2s;
 }
 

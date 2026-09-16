@@ -107,8 +107,8 @@ const ArtistPage = () => {
       </div>
 
       {/* 2. Roots Section */}
-      <section className="container ap-section ap-roots">
-        {/* Animated Snake Line Background */}
+      <div className="ap-roots-wrapper">
+        {/* Animated Full-Width Snake Line Background */}
         <div className="ap-roots-bg-snake">
           <svg width="100%" height="350" viewBox="0 0 2000 350" preserveAspectRatio="none">
             <motion.path
@@ -124,25 +124,27 @@ const ArtistPage = () => {
           </svg>
         </div>
 
-        <div className="ap-label-tag" style={{ position: 'relative', zIndex: 1 }}>
-          <span className="red-text">01</span> / ROOTS
-        </div>
-        <div className="ap-roots-grid" style={{ position: 'relative', zIndex: 1 }}>
-          <div className="ap-roots-left">
-            <h2 className="ap-section-heading">
-              <TypewriterText text={"ROOTED IN TRADITION.\nMADE FOR NOW."} />
-            </h2>
+        <section className="container ap-section ap-roots">
+          <div className="ap-label-tag">
+            <span className="red-text">01</span> / ROOTS
           </div>
-          <div className="ap-roots-right">
-            <p>
-              Dhaval Kothari is a contemporary Indian vocalist and composer blending traditional folk and devotional music from Gujarat and Rajasthan with modern pop production.
-            </p>
-            <p>
-              Drawing from classical training in <span className="red-text ap-bold">Mewati Gharana</span>, every track is a dialogue between timeless devotional poetry and the sonic energy of contemporary pop.
-            </p>
+          <div className="ap-roots-grid">
+            <div className="ap-roots-left">
+              <h2 className="ap-section-heading">
+                <TypewriterText text={"ROOTED IN TRADITION.\nMADE FOR NOW."} />
+              </h2>
+            </div>
+            <div className="ap-roots-right">
+              <p>
+                Dhaval Kothari is a contemporary Indian vocalist and composer blending traditional folk and devotional music from Gujarat and Rajasthan with modern pop production.
+              </p>
+              <p>
+                Drawing from classical training in <span className="red-text ap-bold">Mewati Gharana</span>, every track is a dialogue between timeless devotional poetry and the sonic energy of contemporary pop.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* 3. Stats Section */}
       <section className="ap-stats-section">
@@ -172,7 +174,7 @@ const ArtistPage = () => {
       <section className="ap-subbanner">
         <div className="container">
           <h2 className="ap-subbanner-text">
-            <TypewriterText text="CREATING AND SHARING MUSIC SINCE 2014." />
+            <TypewriterText text="CREATING AND SHARING MUSIC SINCE 2014." loop={true} />
           </h2>
         </div>
       </section>

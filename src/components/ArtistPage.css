@@ -163,21 +163,27 @@
 }
 
 /* 2. Roots Section */
-.ap-roots {
-  background-color: var(--color-white);
-  color: var(--color-black);
+.ap-roots-wrapper {
   position: relative;
   overflow: hidden;
+  width: 100%;
+  background-color: var(--color-white);
+  color: var(--color-black);
 }
 
 .ap-roots-bg-snake {
   position: absolute;
   top: 50%;
-  left: 0;
-  width: 100%;
-  transform: translateY(-50%);
+  left: 50%;
+  width: 100vw;
+  transform: translate(-50%, -50%);
   z-index: 0;
   pointer-events: none;
+}
+
+.ap-roots {
+  position: relative;
+  z-index: 1;
 }
 
 .ap-label-tag {
@@ -245,6 +251,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .ap-stat-value {
@@ -289,19 +297,24 @@
 /* 5. Discography / Tracklist */
 .ap-discography {
   background-color: var(--color-black);
+  background-image: linear-gradient(180deg, rgba(10, 10, 10, 0.88) 0%, rgba(10, 10, 10, 0.94) 100%), url('../assets/screen.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: var(--color-white);
-  padding-top: clamp(80px, 10vw, 130px);
-  padding-bottom: clamp(80px, 10vw, 130px);
+  padding-top: clamp(45px, 5vw, 75px);
+  padding-bottom: clamp(45px, 5vw, 75px);
+  position: relative;
 }
 
 .ap-discography-desc {
   font-family: var(--font-space);
-  font-size: clamp(15px, 1.4vw, 18px);
-  line-height: 1.6;
+  font-size: clamp(14px, 1.3vw, 17px);
+  line-height: 1.5;
   color: rgba(245, 245, 243, 0.7);
   max-width: 680px;
-  margin-top: 16px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 12px;
 }
 
 .ap-tracklist {
@@ -516,8 +529,13 @@
 /* 7. Live Set Big Banner */
 .ap-live-banner {
   background-color: var(--color-black);
-  padding: clamp(60px, 8vw, 100px) 0;
+  background-image: linear-gradient(180deg, rgba(10, 10, 10, 0.78) 0%, rgba(10, 10, 10, 0.88) 100%), url('../assets/screen.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: clamp(80px, 10vw, 140px) 0;
   text-align: center;
+  position: relative;
 }
 
 .ap-live-banner-content {
@@ -716,7 +734,8 @@
   }
   .ap-stats-container {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
     gap: 36px;
   }
   .ap-stat-card {

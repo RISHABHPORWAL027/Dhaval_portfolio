@@ -191,7 +191,10 @@ const FounderPage = () => {
           viewport={{ once: true, amount: 0.2 }}
         >
           <div className="fp-badge fp-badge-outline-red">GROWTH</div>
-          <h2 className="white-text fp-stats-title"><TypewriterText text={"FROM AN IDEA IN 2021 TO A\nTEAM OF 45 TODAY."} /></h2>
+          <div className="fp-stats-header">
+            <h2 className="white-text fp-stats-title"><TypewriterText text={"FROM AN IDEA IN 2021 TO A\nTEAM OF 45 TODAY."} /></h2>
+            <img src={abpLogo} alt="All By Play Logo" className="fp-stats-logo" />
+          </div>
           <p className="fp-stats-desc">At All By Play, we put a lot of emphasis on team growth and education. Our team is passionate about music and deeply cares about the artists we work with.</p>
           <div className="fp-stats-grid">
             <div className="fp-stat-item">

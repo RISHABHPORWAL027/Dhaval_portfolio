@@ -18,23 +18,46 @@ const Navbar = () => {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+
   return (
     <nav className="navbar container">
       <div className="navbar-logo">
         <a href="#">DHAVAL KOTHARI</a>
       </div>
       
-      <button className="mobile-menu-btn" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-        {isMenuOpen ? '✕' : '⋮'}
+      <button 
+        className={`mobile-menu-btn ${isMenuOpen ? 'open' : ''}`} 
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        aria-label="Toggle navigation menu"
+      >
+        <span className="kebab-icon">{isMenuOpen ? '✕' : '⋮'}</span>
       </button>
 
       <ul className={`navbar-links ${isMenuOpen ? 'open' : ''}`}>
-        <li><a href="#about" className={activeHash === '#about' ? 'active' : ''}>About</a></li>
-        <li><a href="#founder" className={activeHash === '#founder' ? 'active' : ''}>Founder</a></li>
-        <li><a href="#artist" className={activeHash === '#artist' ? 'active' : ''}>Artist</a></li>
-        <li><a href="#contact" className={activeHash === '#contact' ? 'active' : ''}>Contact</a></li>
-        <li>
-          <a href="#listen" className="navbar-listen-btn">
+        <li style={{ transitionDelay: isMenuOpen ? '0.05s' : '0s' }}>
+          <a href="#about" className={activeHash === '#about' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>About</a>
+        </li>
+        <li style={{ transitionDelay: isMenuOpen ? '0.1s' : '0s' }}>
+          <a href="#founder" className={activeHash === '#founder' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>Founder</a>
+        </li>
+        <li style={{ transitionDelay: isMenuOpen ? '0.15s' : '0s' }}>
+          <a href="#artist" className={activeHash === '#artist' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>Artist</a>
+        </li>
+        <li style={{ transitionDelay: isMenuOpen ? '0.2s' : '0s' }}>
+          <a href="#contact" className={activeHash === '#contact' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>Contact</a>
+        </li>
+        <li style={{ transitionDelay: isMenuOpen ? '0.25s' : '0s' }}>
+          <a href="#listen" className="navbar-listen-btn" onClick={() => setIsMenuOpen(false)}>
             <span className="play-icon">▶</span> Listen
           </a>
         </li>
