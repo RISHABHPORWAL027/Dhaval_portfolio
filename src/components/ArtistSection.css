@@ -1,12 +1,12 @@
 .artist-section {
   background-color: var(--color-black);
   color: var(--color-white);
-  padding: 120px 0;
+  padding: clamp(60px, 8vw, 120px) 0;
 }
 
 .artist-container {
   display: flex;
-  gap: 80px;
+  gap: clamp(40px, 5vw, 80px);
   align-items: center;
   justify-content: space-between;
 }
@@ -14,7 +14,7 @@
 .artist-image-container {
   flex: 1;
   position: relative;
-  max-width: 650px;
+  max-width: clamp(280px, 36vw, 540px);
   overflow: hidden;
   display: block; /* Since it's now an <a> tag */
   cursor: pointer;
@@ -48,22 +48,23 @@
 
 .artist-content {
   flex: 1;
-  padding-left: 20px;
 }
 
 .artist-reveal-heading {
   font-family: var(--font-space);
-  font-size: 80px;
+  font-size: clamp(36px, 4.5vw, 72px);
   font-style: normal;
   font-weight: 700;
-  line-height: 0.9;
-  letter-spacing: -2.4px;
+  line-height: 0.95;
+  letter-spacing: -2px;
   text-transform: uppercase;
-  margin-bottom: 60px;
+  margin-bottom: clamp(30px, 4vw, 60px);
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
 
 .artist-details {
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 .red-subtitle {
@@ -79,7 +80,7 @@
 
 .artist-details h3 {
   font-family: var(--font-space);
-  font-size: 28px;
+  font-size: clamp(20px, 2vw, 28px);
   font-weight: 700;
   letter-spacing: 0px;
   margin-bottom: 16px;
@@ -87,10 +88,10 @@
 
 .artist-details p {
   color: #999;
-  font-size: 18px;
-  line-height: 1.6;
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.55;
   max-width: 450px;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
 
 .artist-actions {
@@ -149,35 +150,39 @@
 @media (max-width: 1024px) {
   .artist-container {
     flex-direction: column;
-    gap: 60px;
+    gap: 48px;
   }
   .artist-image-container {
-    max-width: 100%;
+    max-width: clamp(280px, 50vw, 420px);
+    margin: 0 auto;
   }
   .artist-reveal-heading {
-    font-size: 60px;
-    margin-bottom: 40px;
+    font-size: clamp(30px, 5vw, 54px);
+    margin-bottom: 30px;
   }
 }
 
 @media (max-width: 768px) {
   .artist-section {
-    padding: 80px 0;
+    padding: 60px 0;
   }
   .artist-content {
     padding-left: 0;
   }
+  .artist-image-container {
+    max-width: min(280px, 75vw);
+  }
   .artist-reveal-heading {
-    font-size: clamp(28px, 9vw, 42px);
-    letter-spacing: -1.5px;
+    font-size: clamp(24px, 7.5vw, 38px);
+    letter-spacing: -1px;
   }
   .artist-details h3 {
-    font-size: 22px;
+    font-size: 20px;
   }
   .artist-details p {
-    font-size: 16px;
+    font-size: 15px;
   }
   .top-label {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
 }

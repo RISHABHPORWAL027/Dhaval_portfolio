@@ -62,9 +62,9 @@ const FounderPage = () => {
       <section className="container fp-section fp-goals">
         <div className="fp-goals-left">
           <h2>
-            <TypewriterText text={"EVERY ARTIST HAS A\n"} />
+            <TypewriterText text="EVERY ARTIST HAS A" /><br/>
             <span className="red-text"><TypewriterText text="DIFFERENT GOAL," /></span><br/>
-            <TypewriterText text={" A DIFFERENT PATHWAY AND \n"} />
+            <TypewriterText text="A DIFFERENT PATHWAY AND" /><br/>
             <span className="red-text"><TypewriterText text="A DIFFERENT ROADMAP" /></span><TypewriterText text="." />
           </h2>
         </div>
@@ -93,7 +93,9 @@ const FounderPage = () => {
             <div className="fp-origin-quotes-row">
               <div className="fp-origin-quote-box">
                 <div className="fp-quote-line"></div>
-                <h3><TypewriterText text={"\"HAVING THE RIGHT\nGURU, MENTOR OR\nTEAM AROUND YOU\nCAN MAKE THAT\nJOURNEY MUCH\nEASIER.\""} /></h3>
+                <h3>
+                  <TypewriterText text={"“HAVING THE RIGHT\nGURU, MENTOR OR\nTEAM AROUND YOU\nCAN MAKE THAT\nJOURNEY MUCH\nEASIER.”"} />
+                </h3>
               </div>
               <div className="fp-origin-placeholder"></div>
             </div>
@@ -102,7 +104,9 @@ const FounderPage = () => {
               <div className="fp-origin-placeholder"></div>
               <div className="fp-origin-quote-box">
                 <div className="fp-quote-line"></div>
-                <h3><TypewriterText text={"\"YOU CAN GROW\nIMMENSELY WHEN\nYOU HAVE THE\nOPPORTUNITY TO\nPRACTICE, LEARN\nAND IMMERSE\nYOURSELF IN MUSIC.\""} /></h3>
+                <h3>
+                  <TypewriterText text={"“YOU CAN GROW\nIMMENSELY WHEN\nYOU HAVE THE\nOPPORTUNITY TO\nPRACTICE, LEARN\nAND IMMERSE\nYOURSELF IN MUSIC.”"} />
+                </h3>
               </div>
             </div>
           </div>
@@ -155,14 +159,14 @@ const FounderPage = () => {
           <span className="red-text">03</span> <span className="black-text">/ BELIEF</span>
         </div>
         <h2 className="fp-approach-title">
-          <TypewriterText text="NO ONE-SIZE- FITS-ALL." /><br/>
+          <TypewriterText text="NO ONE-SIZE-FITS-ALL." /><br/>
           <span className="red-text"><TypewriterText text="ONLY 360°." /></span>
         </h2>
         <p className="fp-approach-subtitle">
           When Dhaval left Spotify in 2021, he started consulting. That eventually became All By Play. Over the last five years, All By Play has been built around one belief: there is no secret sauce to making an artist or a song a hit.
         </p>
         <h3 className="fp-approach-quote">
-          <TypewriterText text='"OUR JOB IS TO LISTEN, UNDERSTAND THE MUSIC AND THE AMBITION, BUILD A PLAN AROUND IT AND HELP THE ARTIST GROW OVER THE LONG TERM."' />
+          <TypewriterText text="“OUR JOB IS TO LISTEN, UNDERSTAND THE MUSIC AND THE AMBITION, BUILD A PLAN AROUND IT AND HELP THE ARTIST GROW OVER THE LONG TERM.”" />
         </h3>
         <p className="fp-approach-desc">
           That has meant constantly experimenting. Testing what works and what doesn't. Working with creators, influencers, animators and illustrators. Using data to understand audiences. Building active listenership rather than simply chasing numbers.

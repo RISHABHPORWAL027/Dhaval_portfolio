@@ -2,14 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const TypewriterText = ({ text, className }) => {
-  // Split text into array of characters, keeping spaces
-  const letters = Array.from(text);
-
   const container = {
     hidden: { opacity: 1 },
     visible: (i = 1) => ({
       opacity: 1,
-      transition: { staggerChildren: 0.04, delayChildren: 0.1 * i },
+      transition: { staggerChildren: 0.03, delayChildren: 0.08 * i },
     }),
   };
 
@@ -23,23 +20,59 @@ const TypewriterText = ({ text, className }) => {
     },
   };
 
+  // Split by newline if present to preserve deliberate line breaks
+  const lines = (text || '').split('\n');
+
   return (
     <motion.span
-      style={{ display: 'inline-block' }}
+      style={{ display: 'inline', wordBreak: 'keep-all', overflowWrap: 'normal' }}
       variants={container}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.5 }}
+      viewport={{ once: true, amount: 0.3 }}
       className={className}
     >
-      {letters.map((letter, index) => {
-        if (letter === '\n') {
-          return <br key={index} />;
-        }
+      {lines.map((line, lineIndex) => {
+        const words = line.split(' ');
         return (
-          <motion.span variants={child} key={index} style={{ display: 'inline-block' }}>
-            {letter === ' ' ? '\u00A0' : letter}
-          </motion.span>
+          <React.Fragment key={lineIndex}>
+            {words.map((word, wordIndex) => (
+              <span
+                key={wordIndex}
+                style={{
+                  display: 'inline-block',
+                  whiteSpace: 'nowrap',
+                  wordBreak: 'keep-all',
+                }}
+              >
+                {Array.from(word).map((letter, letterIndex) => {
+                  const isQuote =
+                    letter === '“' ||
+                    letter === '”' ||
+                    letter === '"' ||
+                    letter === '‘' ||
+                    letter === '’';
+
+                  return (
+                    <motion.span
+                      variants={child}
+                      key={letterIndex}
+                      style={{
+                        display: 'inline-block',
+                        color: isQuote ? 'var(--color-red)' : undefined,
+                      }}
+                    >
+                      {letter}
+                    </motion.span>
+                  );
+                })}
+                {wordIndex < words.length - 1 && (
+                  <span style={{ display: 'inline-block' }}>&nbsp;</span>
+                )}
+              </span>
+            ))}
+            {lineIndex < lines.length - 1 && <br />}
+          </React.Fragment>
         );
       })}
     </motion.span>

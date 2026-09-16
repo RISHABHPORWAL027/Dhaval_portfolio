@@ -1,24 +1,23 @@
 .ventures-section {
-  padding: 120px 0;
+  padding: clamp(60px, 8vw, 120px) 0;
   background-color: var(--color-white);
   color: var(--color-black);
 }
 
 .ventures-container {
   display: flex;
-  gap: 80px;
+  gap: clamp(40px, 5vw, 80px);
 }
 
 .ventures-content {
-  flex: 1;
-  padding-right: 40px;
+  flex: 1.1;
 }
 
 .section-label {
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 1px;
-  margin-bottom: 40px;
+  margin-bottom: clamp(24px, 3vw, 40px);
 }
 
 .text-red {
@@ -44,20 +43,22 @@
 
 .ventures-content h2 {
   font-family: var(--font-space);
-  font-size: 80px;
-  line-height: 0.95;
-  letter-spacing: -3px;
+  font-size: clamp(34px, 4.2vw, 68px);
+  line-height: 1.05;
+  letter-spacing: -2px;
   text-transform: uppercase;
   font-weight: 700;
-  margin-bottom: 40px;
+  margin-bottom: clamp(24px, 3vw, 40px);
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
 
 .ventures-content p {
   color: #666;
-  font-size: 18px;
-  line-height: 1.6;
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.55;
   max-width: 450px;
-  margin-bottom: 50px;
+  margin-bottom: clamp(30px, 3.5vw, 50px);
 }
 
 .ventures-link {
@@ -93,19 +94,19 @@
 
 .ventures-list li {
   display: flex;
-  padding: 40px 0;
-  align-items: center; /* Vertically center */
-  gap: 32px;
+  padding: clamp(20px, 2.5vw, 36px) 0;
+  align-items: center;
+  gap: clamp(16px, 2vw, 32px);
   align-self: stretch;
   border-top: 0.667px solid rgba(5, 5, 5, 0.10);
 
   color: #050505;
   font-family: var(--font-space);
-  font-size: 60px;
+  font-size: clamp(26px, 3.5vw, 52px);
   font-style: normal;
   font-weight: 700;
-  line-height: 60px; /* 100% */
-  letter-spacing: -1.5px;
+  line-height: 1.1;
+  letter-spacing: -1px;
   text-transform: uppercase;
   transition: color 0.3s ease;
   cursor: pointer;
@@ -118,7 +119,7 @@
 @media (max-width: 1024px) {
   .ventures-container {
     flex-direction: column;
-    gap: 60px;
+    gap: 48px;
   }
   .ventures-list-container {
     padding-right: 0;
@@ -126,25 +127,25 @@
     width: 100%;
   }
   .ventures-content h2 {
-    font-size: 60px;
+    font-size: clamp(28px, 4.5vw, 50px);
   }
 }
 
 @media (max-width: 768px) {
   .ventures-section {
-    padding: 80px 0;
+    padding: 60px 0;
   }
   .ventures-content h2 {
-    font-size: clamp(28px, 9vw, 42px);
-    letter-spacing: -1.5px;
+    font-size: clamp(22px, 6.5vw, 36px);
+    letter-spacing: -1px;
   }
   .ventures-list li {
-    font-size: 36px;
+    font-size: clamp(18px, 5.5vw, 28px);
     line-height: 1.2;
-    padding: 24px 0;
-    gap: 20px;
+    padding: 16px 0;
+    gap: 16px;
   }
   .list-num {
-    padding-top: 8px; /* Realigh for smaller text */
+    padding-top: 2px;
   }
 }
