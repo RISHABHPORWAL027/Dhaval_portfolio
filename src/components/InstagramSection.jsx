@@ -49,10 +49,9 @@ const InstagramSection = () => {
           if (entry.isIntersecting) {
             video.muted = isMuted;
             video.play().catch((err) => {
-              // Browser policy fallback: if unmuted autoplay is blocked, play muted automatically
-              console.log("Unmuted autoplay restricted by browser policy, falling back to muted autoplay:", err);
+              // Browser policy fallback: play muted until first user gesture, but keep sound state ON
+              console.log("Unmuted autoplay restricted by browser policy, falling back to muted until user gesture:", err);
               video.muted = true;
-              setIsMuted(true);
               video.play().catch((e) => console.log("Muted autoplay error:", e));
             });
           } else {
@@ -68,7 +67,25 @@ const InstagramSection = () => {
     return () => {
       if (video) observer.unobserve(video);
     };
-  }, []);
+  }, [isMuted]);
+
+  // Global user interaction listener to immediately unmute video on first click/tap if sound is ON
+  useEffect(() => {
+    const handleFirstUserInteraction = () => {
+      if (videoRef.current && !isMuted) {
+        videoRef.current.muted = false;
+        videoRef.current.play().catch(() => {});
+      }
+    };
+
+    window.addEventListener('click', handleFirstUserInteraction, { once: true });
+    window.addEventListener('touchstart', handleFirstUserInteraction, { once: true });
+
+    return () => {
+      window.removeEventListener('click', handleFirstUserInteraction);
+      window.removeEventListener('touchstart', handleFirstUserInteraction);
+    };
+  }, [isMuted]);
 
   const toggleMute = (e) => {
     if (e && e.stopPropagation) {
