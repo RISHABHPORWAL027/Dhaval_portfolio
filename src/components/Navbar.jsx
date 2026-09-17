@@ -7,7 +7,7 @@ const Navbar = () => {
 
   useEffect(() => {
     // Set initial hash
-    setActiveHash(window.location.hash || '#about');
+    setActiveHash(window.location.hash || '');
 
     const handleHashChange = () => {
       setActiveHash(window.location.hash);
@@ -32,7 +32,12 @@ const Navbar = () => {
   return (
     <nav className="navbar container">
       <div className="navbar-logo">
-        <a href="#">DHAVAL KOTHARI</a>
+        <a 
+          href="#" 
+          className={activeHash === '' || activeHash === '#' || activeHash === '#home' || activeHash === '#about' ? 'active' : ''}
+        >
+          DHAVAL KOTHARI
+        </a>
       </div>
       
       <button 
@@ -45,19 +50,22 @@ const Navbar = () => {
 
       <ul className={`navbar-links ${isMenuOpen ? 'open' : ''}`}>
         <li style={{ transitionDelay: isMenuOpen ? '0.05s' : '0s' }}>
-          <a href="#about" className={activeHash === '#about' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>About</a>
+          <a href="#founder" className={activeHash === '#founder' || activeHash === '#portfolio' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>Founder</a>
         </li>
         <li style={{ transitionDelay: isMenuOpen ? '0.1s' : '0s' }}>
-          <a href="#founder" className={activeHash === '#founder' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>Founder</a>
-        </li>
-        <li style={{ transitionDelay: isMenuOpen ? '0.15s' : '0s' }}>
           <a href="#artist" className={activeHash === '#artist' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>Artist</a>
         </li>
-        <li style={{ transitionDelay: isMenuOpen ? '0.2s' : '0s' }}>
+        <li style={{ transitionDelay: isMenuOpen ? '0.15s' : '0s' }}>
           <a href="#contact" className={activeHash === '#contact' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>Contact</a>
         </li>
-        <li style={{ transitionDelay: isMenuOpen ? '0.25s' : '0s' }}>
-          <a href="#listen" className="navbar-listen-btn" onClick={() => setIsMenuOpen(false)}>
+        <li style={{ transitionDelay: isMenuOpen ? '0.2s' : '0s' }}>
+          <a 
+            href="https://open.spotify.com/artist/2Nu84CgIbMyb8wgAg3xLEt" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="navbar-listen-btn" 
+            onClick={() => setIsMenuOpen(false)}
+          >
             <span className="play-icon">▶</span> Listen
           </a>
         </li>

@@ -11,14 +11,14 @@ import FounderPage from './components/FounderPage'
 import ArtistPage from './components/ArtistPage'
 
 function App() {
-  const [currentHash, setCurrentHash] = useState(window.location.hash || '#about');
+  const [currentHash, setCurrentHash] = useState(window.location.hash || '');
 
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash || '#about';
+      const hash = window.location.hash || '';
       setCurrentHash(hash);
       
-      if (hash === '#founder' || hash === '#portfolio' || hash === '#artist' || hash === '#about' || hash === '') {
+      if (hash === '#founder' || hash === '#portfolio' || hash === '#artist' || hash === '' || hash === '#home' || hash === '#about') {
         window.scrollTo(0, 0);
       }
     };
@@ -28,13 +28,14 @@ function App() {
   }, []);
 
   const isFounderPage = currentHash === '#founder' || currentHash === '#portfolio';
+  const isArtistPage = currentHash === '#artist';
 
   return (
     <>
       <Navbar />
       {isFounderPage ? (
         <FounderPage />
-      ) : currentHash === '#artist' ? (
+      ) : isArtistPage ? (
         <ArtistPage />
       ) : (
         <>
@@ -46,7 +47,7 @@ function App() {
           <InstagramSection />
         </>
       )}
-      <Footer hideCta={currentHash === '#artist'} />
+      <Footer hideCta={isArtistPage} />
     </>
   );
 }

@@ -57,11 +57,31 @@ const Footer = ({ hideCta = false }) => {
             <a href="#">DHAVAL KOTHARI</a>
             <span className="copyright">© {new Date().getFullYear()} All rights reserved</span>
           </div>
+
+          <div className="footer-credits">
+            Design and Developed by{' '}
+            <a 
+              href="https://www.devyugsolutions.com/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              Devyug Solutions
+            </a>
+          </div>
+
           <ul className="footer-links">
             <li><a href="#founder">FOUNDER</a></li>
             <li><a href="#artist">ARTIST</a></li>
             <li><a href="#contact">CONTACT</a></li>
-            <li><a href="#listen">LISTEN <span className="red-dot small"></span></a></li>
+            <li>
+              <a 
+                href="https://open.spotify.com/artist/2Nu84CgIbMyb8wgAg3xLEt" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                LISTEN <span className="red-dot small"></span>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
