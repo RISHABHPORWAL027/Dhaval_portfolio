@@ -33,7 +33,7 @@ const TypewriterText = ({ text, className, loop = false, speed = 70, delay = 200
 
   if (loop) {
     return (
-      <span className={className} style={{ display: 'inline', wordBreak: 'keep-all', overflowWrap: 'normal' }}>
+      <span className={className} style={{ display: 'inline', wordBreak: 'keep-all', overflowWrap: 'normal', whiteSpace: 'pre-line' }}>
         {displayedText}
         <motion.span
           animate={{ opacity: [1, 0, 1] }}

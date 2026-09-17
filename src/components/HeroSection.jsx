@@ -43,8 +43,7 @@ const HeroSection = () => {
       >
       <div className="hero-content">
         <h1 className="hero-heading">
-          <TypewriterText text="BUILDING" /><br />
-          <TypewriterText text="AND MAKING" /><span className="red-dot-blink">.</span>
+          <TypewriterText text={"BUILDING\nAND MAKING."} loop={true} speed={70} delay={2200} />
         </h1>
         <p className="hero-label">FOUNDER / ARTIST / GUJARATI POP</p>
         <p className="hero-description">

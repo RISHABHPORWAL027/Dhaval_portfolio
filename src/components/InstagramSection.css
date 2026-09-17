@@ -1,0 +1,516 @@
+/* Instagram Showcase Section Styles for Homepage */
+.ap-instagram-wrapper {
+  background-color: var(--color-black);
+  background-image: linear-gradient(180deg, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%), url('../assets/screen.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+  padding-top: clamp(40px, 4.5vw, 65px);
+  padding-bottom: clamp(45px, 5vw, 75px);
+}
+
+/* Smooth Top Fade Overlay */
+.ap-instagram-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 1) 0%, rgba(10, 10, 10, 0.6) 50%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Smooth Bottom Fade Overlay */
+.ap-instagram-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(0deg, #0A0A0A 0%, rgba(10, 10, 10, 0.9) 60%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ap-instagram-bg-glow {
+  position: absolute;
+  top: 50%;
+  right: 15%;
+  width: 550px;
+  height: 550px;
+  transform: translate(20%, -50%);
+  background: radial-gradient(circle, rgba(230, 0, 0, 0.18) 0%, rgba(230, 0, 0, 0.04) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ap-instagram-container {
+  position: relative;
+  z-index: 1;
+}
+
+.ap-insta-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(40px, 6vw, 80px);
+}
+
+.ap-insta-left {
+  flex: 1.1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.5vw, 28px);
+}
+
+.ap-insta-desc {
+  font-family: var(--font-space);
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.6;
+  color: rgba(245, 245, 243, 0.75);
+  max-width: 520px;
+}
+
+/* Single Card Showcase (Borderless & Backgroundless) */
+.ap-single-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 135px;
+  justify-content: center;
+  margin-top: 4px;
+  margin-bottom: 6px;
+}
+
+.ap-single-card-item {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ap-single-card-header {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-family: var(--font-space);
+}
+
+.ap-single-num {
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  color: var(--color-red);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.ap-single-slash {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(245, 245, 243, 0.3);
+  margin: 0 2px;
+}
+
+.ap-single-total {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(245, 245, 243, 0.4);
+}
+
+.ap-single-title {
+  font-family: var(--font-space);
+  font-size: clamp(18px, 2.2vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  color: #F5F5F3;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.ap-single-desc {
+  font-family: var(--font-space);
+  font-size: clamp(13px, 1.2vw, 16px);
+  line-height: 1.5;
+  color: rgba(245, 245, 243, 0.7);
+  max-width: 460px;
+  margin: 0;
+}
+
+/* Pagination Indicator Pills */
+.ap-single-pills {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.ap-single-pill {
+  position: relative;
+  width: 36px;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.ap-single-pill.active-pill {
+  width: 55px;
+  background: rgba(230, 0, 0, 0.3);
+}
+
+.ap-single-pill .ap-pill-progress {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: var(--color-red);
+  border-radius: 4px;
+}
+
+.ap-single-pill.active-pill .ap-pill-progress {
+  animation: apPillFill 4s linear infinite;
+}
+
+@keyframes apPillFill {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+.ap-insta-cta {
+  margin-top: 4px;
+}
+
+/* Right Side: Smartphone Frame & Floating Sound Control */
+.ap-insta-right {
+  flex: 0.9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 10px 0;
+}
+
+.ap-phone-container {
+  position: relative;
+  width: 100%;
+  max-width: 270px;
+  aspect-ratio: 9 / 18.5;
+  perspective: 1000px;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Outside Sound Toggle Button */
+.ap-outside-sound-toggle {
+  position: absolute;
+  top: -18px;
+  right: -14px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(20, 20, 24, 0.85);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 8px 16px;
+  border-radius: 30px;
+  color: #FFFFFF;
+  font-family: var(--font-space);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.ap-outside-sound-toggle:hover {
+  transform: scale(1.08) translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.15);
+}
+
+.ap-outside-sound-toggle.active-sound {
+  background: rgba(230, 0, 0, 0.25);
+  border-color: var(--color-red);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(230, 0, 0, 0.35);
+}
+
+.ap-sound-icon {
+  font-size: 13px;
+}
+
+.ap-sound-label {
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.ap-phone-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #18181b;
+  border-radius: 46px;
+  padding: 10px;
+  border: 3px solid #27272a;
+  box-shadow: 
+    inset 0 0 0 2px #09090b,
+    0 25px 50px -12px rgba(0, 0, 0, 0.85),
+    0 0 35px rgba(230, 0, 0, 0.15);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+}
+
+/* Hover effect: smoothly increases phone size, tilts slightly, and illuminates with red glow */
+.ap-phone-container:hover .ap-phone-body {
+  transform: scale(1.09) translateY(-10px) rotateY(-2deg) rotateX(2deg);
+  border-color: rgba(230, 0, 0, 0.55);
+  box-shadow: 
+    inset 0 0 0 2px #09090b,
+    0 35px 70px -10px rgba(0, 0, 0, 0.92),
+    0 0 50px rgba(230, 0, 0, 0.45);
+}
+
+/* Click / active effect: further expands phone size to 1.15x with rich accent lighting */
+.ap-phone-container:active .ap-phone-body {
+  transform: scale(1.15) translateY(-14px) rotateY(0deg) rotateX(0deg);
+  border-color: var(--color-red);
+  box-shadow: 
+    inset 0 0 0 2px #09090b,
+    0 45px 85px -8px rgba(0, 0, 0, 0.96),
+    0 0 70px rgba(230, 0, 0, 0.65);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ap-phone-notch {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 24px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 10px;
+  gap: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.ap-camera-lens {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #0d0d11;
+  border: 1.5px solid #1a1a24;
+}
+
+.ap-sensor-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #09121d;
+}
+
+.ap-phone-speaker {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45px;
+  height: 3px;
+  background: #2a2a2e;
+  border-radius: 3px;
+  z-index: 10;
+}
+
+.ap-phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  border-radius: 38px;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.ap-phone-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ap-phone-glow {
+  position: absolute;
+  inset: -10px;
+  background: radial-gradient(circle, rgba(230, 0, 0, 0.2) 0%, transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(15px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .ap-insta-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+  
+  .ap-insta-left {
+    width: 100%;
+    flex: none;
+    align-items: center;
+    text-align: center;
+  }
+
+  .ap-section-heading {
+    text-align: center;
+  }
+
+  .ap-insta-desc {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .ap-single-card-container {
+    align-items: center;
+    text-align: center;
+  }
+
+  .ap-single-card-header {
+    justify-content: center;
+  }
+
+  .ap-single-pills {
+    justify-content: center;
+  }
+
+  .ap-insta-cta {
+    display: flex;
+    justify-content: center;
+  }
+
+  .ap-insta-right {
+    width: 100%;
+    flex: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .ap-instagram-wrapper {
+    padding-top: 35px;
+    padding-bottom: 45px;
+  }
+
+  .ap-section-heading {
+    font-size: clamp(26px, 6.5vw, 42px);
+  }
+
+  .ap-insta-desc {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .ap-single-title {
+    font-size: clamp(16px, 4.5vw, 22px);
+  }
+
+  .ap-single-desc {
+    font-size: 13px;
+  }
+
+  .ap-phone-container {
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  .ap-outside-sound-toggle {
+    top: -14px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    padding: 4px 10px;
+    gap: 5px;
+    border-width: 1px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .ap-outside-sound-toggle:hover {
+    transform: translateX(-50%) scale(1.04);
+  }
+
+  .ap-outside-sound-toggle .ap-sound-icon {
+    font-size: 10px;
+  }
+
+  .ap-outside-sound-toggle .ap-sound-label {
+    font-size: 8.5px;
+    letter-spacing: 0.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ap-phone-container {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+
+  .ap-outside-sound-toggle {
+    top: -12px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    padding: 3px 8px;
+    gap: 4px;
+    white-space: nowrap;
+  }
+
+  .ap-outside-sound-toggle .ap-sound-icon {
+    font-size: 9px;
+  }
+
+  .ap-outside-sound-toggle .ap-sound-label {
+    font-size: 8px;
+    letter-spacing: 0.4px;
+  }
+
+  .ap-outside-sound-toggle:hover {
+    transform: translateX(-50%) scale(1.04);
+  }
+
+  .ap-phone-notch {
+    width: 80px;
+    height: 20px;
+    top: 14px;
+  }
+
+  .ap-phone-body {
+    border-radius: 38px;
+    padding: 8px;
+  }
+
+  .ap-phone-screen {
+    border-radius: 30px;
+  }
+}

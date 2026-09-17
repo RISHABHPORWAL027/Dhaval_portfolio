@@ -1,11 +1,12 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import './ArtistPage.css';
 import TypewriterText from './TypewriterText';
 import AnimatedCounter from './AnimatedCounter';
 import MagneticButton from './MagneticButton';
 import MusicPlayer from './MusicPlayer';
 import heroBgVideo from '../assets/herosection_bg.mp4';
+import instagramVideo from '../assets/instagram.mp4';
 
 const tracks = [
   {

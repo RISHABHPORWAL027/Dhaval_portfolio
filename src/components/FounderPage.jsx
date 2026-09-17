@@ -1,12 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import './FounderPage.css';
 import abpLogo from '../assets/ABP_logo.png';
 import AnimatedCounter from './AnimatedCounter';
 import TypewriterText from './TypewriterText';
 import MagneticButton from './MagneticButton';
+import AllByPlayReelSection from './AllByPlayReelSection';
+
+const turningPointCards = [
+  {
+    num: '01',
+    text: 'When Dhaval was working at Spotify during COVID, he saw an influx of music and independent artists entering the ecosystem. He also saw how many of them lacked the right guidance.'
+  },
+  {
+    num: '02',
+    text: 'As an artist himself, he connected deeply with a lot of these artists. He worked with them, guided them and, in many cases, consulted with them for free.'
+  },
+  {
+    num: '03',
+    text: 'At the same time, he was helping his dad with his business at NRK Ironsteel. Eventually, he started thinking about how he could bring his experience in music, sales and business together to build something that could genuinely support artists.'
+  }
+];
 
 const FounderPage = () => {
+  const [activeTpStep, setActiveTpStep] = useState(0);
+
+  // Auto progress bar timer cycling every 4 seconds
+  useEffect(() => {
+    const tpTimer = setInterval(() => {
+      setActiveTpStep((prev) => (prev + 1) % turningPointCards.length);
+    }, 4000);
+    return () => clearInterval(tpTimer);
+  }, []);
   return (
     <div className="founder-page">
       {/* Section 1 */}
@@ -75,6 +100,9 @@ const FounderPage = () => {
         </div>
       </section>
 
+      {/* All By Play Reel Showcase Section */}
+      <AllByPlayReelSection />
+
       {/* Section 3: Origin */}
       <section className="container fp-section fp-origin">
         <div className="fp-origin-header">
@@ -124,27 +152,29 @@ const FounderPage = () => {
               <TypewriterText text={"SPOTIFY, CONSULTING AND\nTHE IDEA FOR ALL BY PLAY."} />
             </h2>
             <div className="fp-black-grid">
-              <div className="fp-black-col">
-                <div className="fp-col-header">
-                  <span className="red-dot"></span>
-                  <div className="fp-dark-line"></div>
+              {turningPointCards.map((card, idx) => (
+                <div 
+                  key={idx}
+                  className={`fp-black-col ${activeTpStep === idx ? 'active-tp-col' : ''}`}
+                  onClick={() => setActiveTpStep(idx)}
+                >
+                  <div className="fp-col-header">
+                    <span className={`red-dot ${activeTpStep === idx ? 'pulse-dot' : ''}`}></span>
+                    <div className="fp-dark-line">
+                      {activeTpStep === idx && (
+                        <motion.div 
+                          key={activeTpStep}
+                          className="fp-progress-bar"
+                          initial={{ width: '0%' }}
+                          animate={{ width: '100%' }}
+                          transition={{ duration: 4, ease: 'linear' }}
+                        />
+                      )}
+                    </div>
+                  </div>
+                  <p>{card.text}</p>
                 </div>
-                <p>When Dhaval was working at Spotify during COVID, he saw an influx of music and independent artists entering the ecosystem. He also saw how many of them lacked the right guidance.</p>
-              </div>
-              <div className="fp-black-col">
-                <div className="fp-col-header">
-                  <span className="red-dot"></span>
-                  <div className="fp-dark-line"></div>
-                </div>
-                <p>As an artist himself, he connected deeply with a lot of these artists. He worked with them, guided them and, in many cases, consulted with them for free.</p>
-              </div>
-              <div className="fp-black-col">
-                <div className="fp-col-header">
-                  <span className="red-dot"></span>
-                  <div className="fp-dark-line"></div>
-                </div>
-                <p>At the same time, he was helping his dad with his business at NRK Ironsteel. Eventually, he started thinking about how he could bring his experience in music, sales and business together to build something that could genuinely support artists.</p>
-              </div>
+              ))}
             </div>
           </div>
           <div className="fp-tp-image">
@@ -154,23 +184,52 @@ const FounderPage = () => {
       </section>
 
       {/* Section 5: Belief */}
-      <section className="container fp-section fp-approach">
-        <div className="fp-origin-badge" style={{ marginBottom: '40px' }}>
-          <span className="red-text">03</span> <span className="black-text">/ BELIEF</span>
+      <div className="fp-approach-wrapper">
+        {/* Background Floating Snake Lines - 2 Lines */}
+        <div className="hero-bg-snake" style={{ zIndex: 0, top: '35%' }}>
+          <svg width="100%" height="450" viewBox="0 0 2000 450" preserveAspectRatio="none">
+            {/* Line 1 */}
+            <motion.path
+              d="M0,225 C250,450 350,0 600,225 C850,450 950,0 1200,225 C1450,450 1550,0 1800,225 C1900,337 1950,112 2000,225"
+              fill="none"
+              stroke="var(--color-red)"
+              strokeWidth="3"
+              initial={{ pathLength: 0, opacity: 0 }}
+              whileInView={{ pathLength: 1, opacity: 0.18 }}
+              transition={{ duration: 3, ease: "easeInOut" }}
+              viewport={{ once: true }}
+            />
+            {/* Line 2 */}
+            <motion.path
+              d="M0,120 C350,450 450,0 800,180 C1000,450 1200,0 1500,225 C1700,450 1900,0 2000,120"
+              fill="none"
+              stroke="var(--color-red)"
+              strokeWidth="1.5"
+              initial={{ pathLength: 0, opacity: 0 }}
+              whileInView={{ pathLength: 1, opacity: 0.12 }}
+              transition={{ duration: 4, ease: "easeInOut", delay: 0.5 }}
+              viewport={{ once: true }}
+            />
+          </svg>
         </div>
-        <h2 className="fp-approach-title">
-          <TypewriterText text="NO ONE-SIZE-FITS-ALL." /><br/>
-          <span className="red-text"><TypewriterText text="ONLY 360°." /></span>
-        </h2>
-        <p className="fp-approach-subtitle">
-          When Dhaval left Spotify in 2021, he started consulting. That eventually became All By Play. Over the last five years, All By Play has been built around one belief: there is no secret sauce to making an artist or a song a hit.
-        </p>
-        <h3 className="fp-approach-quote">
-          <TypewriterText text="“OUR JOB IS TO LISTEN, UNDERSTAND THE MUSIC AND THE AMBITION, BUILD A PLAN AROUND IT AND HELP THE ARTIST GROW OVER THE LONG TERM.”" />
-        </h3>
-        <p className="fp-approach-desc">
-          That has meant constantly experimenting. Testing what works and what doesn't. Working with creators, influencers, animators and illustrators. Using data to understand audiences. Building active listenership rather than simply chasing numbers.
-        </p>
+
+        <section className="container fp-section fp-approach" style={{ position: 'relative', zIndex: 1 }}>
+          <div className="fp-origin-badge" style={{ marginBottom: '40px' }}>
+            <span className="red-text">03</span> <span className="black-text">/ BELIEF</span>
+          </div>
+          <h2 className="fp-approach-title">
+            <TypewriterText text="NO ONE-SIZE-FITS-ALL." /><br/>
+            <span className="red-text"><TypewriterText text="ONLY 360°." /></span>
+          </h2>
+          <p className="fp-approach-subtitle">
+            When Dhaval left Spotify in 2021, he started consulting. That eventually became All By Play. Over the last five years, All By Play has been built around one belief: there is no secret sauce to making an artist or a song a hit.
+          </p>
+          <h3 className="fp-approach-quote">
+            <TypewriterText text="“OUR JOB IS TO LISTEN, UNDERSTAND THE MUSIC AND THE AMBITION, BUILD A PLAN AROUND IT AND HELP THE ARTIST GROW OVER THE LONG TERM.”" />
+          </h3>
+          <p className="fp-approach-desc">
+            That has meant constantly experimenting. Testing what works and what doesn't. Working with creators, influencers, animators and illustrators. Using data to understand audiences. Building active listenership rather than simply chasing numbers.
+          </p>
         
         <div className="fp-approach-labels">
           <div className="fp-label fp-label-left">
@@ -212,6 +271,7 @@ const FounderPage = () => {
           </div>
         </motion.div>
       </section>
+      </div>
     </div>
   );
 };

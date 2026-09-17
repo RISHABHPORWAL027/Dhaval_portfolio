@@ -113,8 +113,10 @@
 
 .hero-image-container {
   flex: 0.85;
+  width: 100%;
   max-width: clamp(260px, 30vw, 440px);
   aspect-ratio: 1 / 1;
+  height: auto;
   border: 2px solid var(--color-red);
   border-radius: 50%;
   padding: 14px;
@@ -122,11 +124,13 @@
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .hero-image-inner {
   width: 100%;
   height: 100%;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -134,7 +138,9 @@
 .hero-image {
   width: 100%;
   height: 100%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
+  border-radius: 50%;
   transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -166,7 +172,12 @@
   }
   .hero-image-container {
     margin: 0 auto;
-    max-width: clamp(240px, 38vw, 360px);
+    flex: none;
+    width: clamp(220px, 50vw, 320px);
+    max-width: 320px;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    padding: 12px;
   }
 }
 
@@ -181,6 +192,16 @@
     line-height: 1.5;
   }
   .hero-image-container {
-    max-width: min(250px, 70vw);
+    width: clamp(200px, 65vw, 260px);
+    max-width: 260px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-image-container {
+    width: clamp(180px, 70vw, 230px);
+    max-width: 230px;
+    padding: 8px;
   }
 }

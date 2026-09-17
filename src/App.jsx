@@ -5,6 +5,7 @@ import StatementSection from './components/StatementSection'
 import VenturesSection from './components/VenturesSection'
 import ArtistSection from './components/ArtistSection'
 import Marquee from './components/Marquee'
+import InstagramSection from './components/InstagramSection'
 import Footer from './components/Footer'
 import FounderPage from './components/FounderPage'
 import ArtistPage from './components/ArtistPage'
@@ -42,6 +43,7 @@ function App() {
           <VenturesSection />
           <ArtistSection />
           <Marquee />
+          <InstagramSection />
         </>
       )}
       <Footer hideCta={currentHash === '#artist'} />
