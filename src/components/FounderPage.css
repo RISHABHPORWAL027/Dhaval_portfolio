@@ -4,8 +4,8 @@
 }
 
 .fp-section {
-  padding-top: clamp(40px, 5vw, 60px);
-  padding-bottom: clamp(40px, 5vw, 60px);
+  padding-top: clamp(55px, 7vw, 90px);
+  padding-bottom: clamp(55px, 7vw, 90px);
 }
 
 .red-text {
@@ -120,9 +120,9 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding-bottom: clamp(40px, 5vw, 80px);
-  border-top: 1px solid #eaeaea;
-  padding-top: clamp(40px, 5vw, 80px);
+  padding-bottom: clamp(50px, 7vw, 90px);
+  border-top: none;
+  padding-top: clamp(80px, 11vw, 130px);
   gap: clamp(30px, 4vw, 60px);
 }
 
@@ -171,7 +171,8 @@
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 1px;
-  margin-bottom: 20px;
+  margin-top: clamp(16px, 2vw, 28px);
+  margin-bottom: clamp(20px, 3vw, 36px);
   display: inline-block;
 }
 
@@ -339,6 +340,49 @@
   padding-top: clamp(50px, 6vw, 80px);
 }
 
+.fp-approach-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(24px, 5vw, 80px);
+}
+
+.fp-approach-content {
+  flex: 1.1;
+  min-width: 0;
+}
+
+.fp-approach-image-col {
+  flex: 0.9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.fp-approach-img-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.14);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.fp-approach-img {
+  width: 100%;
+  height: auto;
+  max-height: 560px;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fp-approach-img-wrapper:hover .fp-approach-img {
+  transform: scale(1.03);
+}
+
 .fp-approach-title {
   font-family: var(--font-space);
   font-size: clamp(28px, 3.8vw, 54px);
@@ -352,7 +396,7 @@
   font-size: clamp(14px, 1.3vw, 16px);
   color: #333;
   max-width: 800px;
-  margin-bottom: clamp(30px, 4vw, 60px);
+  margin-bottom: clamp(24px, 4vw, 50px);
   line-height: 1.55;
 }
 
@@ -370,7 +414,7 @@
   font-size: clamp(13px, 1.2vw, 14px);
   color: #555;
   max-width: 700px;
-  margin-bottom: clamp(30px, 4vw, 60px);
+  margin-bottom: 24px;
   line-height: 1.55;
 }
 
@@ -542,8 +586,29 @@
 
 @media (max-width: 768px) {
   .fp-hero {
-    padding-bottom: 30px;
-    padding-top: 20px;
+    padding-top: clamp(40px, 6vw, 65px);
+    padding-bottom: clamp(50px, 8vw, 80px);
+  }
+  .fp-section {
+    padding-top: clamp(60px, 9vw, 90px);
+    padding-bottom: clamp(60px, 9vw, 90px);
+  }
+  .fp-goals {
+    padding-top: clamp(85px, 15vw, 120px) !important;
+    padding-bottom: clamp(60px, 9vw, 90px);
+    margin-top: clamp(24px, 4vw, 45px);
+    gap: 32px;
+  }
+  .fp-origin {
+    padding-top: clamp(55px, 8vw, 85px);
+    padding-bottom: clamp(55px, 8vw, 85px);
+  }
+  .fp-black-bg {
+    padding: clamp(65px, 9vw, 95px) 0;
+    margin-top: clamp(55px, 8vw, 85px);
+  }
+  .fp-approach {
+    padding-top: clamp(65px, 9vw, 95px);
   }
   .fp-hero-right {
     margin-left: 0;
@@ -591,9 +656,23 @@
   }
   .fp-black-grid {
     flex-direction: column;
+    gap: 36px;
   }
   .fp-section-title {
     font-size: clamp(20px, 5.5vw, 28px);
+  }
+  .fp-approach-grid {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
+  .fp-approach-content,
+  .fp-approach-image-col {
+    flex: 1;
+    width: 100%;
+  }
+  .fp-approach-img-wrapper {
+    max-width: 100%;
   }
   .fp-approach-title {
     font-size: clamp(22px, 6vw, 32px);
@@ -603,17 +682,24 @@
   }
   .fp-approach-labels {
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
+    margin-top: clamp(40px, 6vw, 70px);
   }
   .fp-label-right h2 {
     text-align: left;
   }
+  .fp-huge-placeholder {
+    height: clamp(180px, 30vw, 320px);
+    margin-bottom: clamp(30px, 5vw, 50px);
+  }
   .fp-stats-card {
-    padding: 24px;
+    padding: clamp(32px, 6vw, 48px) clamp(20px, 4vw, 36px);
+    margin-top: clamp(40px, 6vw, 60px);
+    margin-bottom: clamp(50px, 8vw, 80px);
   }
   .fp-stats-grid {
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
   }
   .fp-stats-title {
     font-size: clamp(18px, 5.5vw, 26px);

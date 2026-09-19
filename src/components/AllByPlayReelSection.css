@@ -439,8 +439,10 @@
 
 @media (max-width: 768px) {
   .abp-reel-wrapper {
-    padding-top: 35px;
-    padding-bottom: 45px;
+    padding-top: clamp(60px, 9vw, 90px);
+    padding-bottom: clamp(65px, 9vw, 95px);
+    margin-top: clamp(35px, 5vw, 60px);
+    margin-bottom: clamp(35px, 5vw, 60px);
   }
 
   .ap-section-heading {

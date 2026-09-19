@@ -3,8 +3,8 @@
 }
 
 .ap-section {
-  padding-top: clamp(60px, 8vw, 100px);
-  padding-bottom: clamp(60px, 8vw, 100px);
+  padding-top: clamp(80px, 10vw, 130px);
+  padding-bottom: clamp(80px, 10vw, 130px);
 }
 
 .white-text {
@@ -192,7 +192,8 @@
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  margin-bottom: clamp(24px, 3vw, 40px);
+  margin-top: clamp(16px, 2vw, 30px);
+  margin-bottom: clamp(28px, 4vw, 48px);
 }
 
 .ap-roots-grid {
@@ -235,7 +236,7 @@
 .ap-stats-section {
   background-color: var(--color-black);
   color: var(--color-white);
-  padding: clamp(60px, 7vw, 90px) 0;
+  padding: clamp(75px, 9.5vw, 115px) 0;
   border-top: 1px solid #1a1a1a;
   border-bottom: 1px solid #1a1a1a;
 }
@@ -278,11 +279,37 @@
 /* 4. Sub-banner */
 .ap-subbanner {
   background-color: var(--color-white);
-  padding: clamp(40px, 5vw, 70px) 0;
+  padding: clamp(70px, 8.5vw, 105px) 0;
   border-bottom: 1px solid #eee;
 }
 
+.ap-subbanner-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(24px, 3.5vw, 45px);
+}
+
+.ap-subbanner-media {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ap-subbanner-gif {
+  height: clamp(65px, 6.5vw, 120px);
+  width: auto;
+  max-width: none;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: none;
+  box-shadow: none;
+}
+
 .ap-subbanner-text {
+  flex: 1;
   font-family: var(--font-space);
   font-size: clamp(24px, 3.5vw, 52px);
   font-weight: 800;
@@ -292,6 +319,7 @@
   text-transform: uppercase;
   word-break: keep-all;
   overflow-wrap: normal;
+  text-align: left;
 }
 
 /* 5. Discography / Tracklist */
@@ -302,8 +330,8 @@
   background-position: center;
   background-repeat: no-repeat;
   color: var(--color-white);
-  padding-top: clamp(45px, 5vw, 75px);
-  padding-bottom: clamp(45px, 5vw, 75px);
+  padding-top: clamp(80px, 10vw, 130px);
+  padding-bottom: clamp(80px, 10vw, 130px);
   position: relative;
 }
 
@@ -468,6 +496,7 @@
   border-radius: 16px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2), 0 0 30px rgba(230, 0, 0, 0.08);
+  margin-bottom: clamp(10px, 2vw, 25px);
 }
 
 .ap-live-set-iframe {
@@ -597,9 +626,20 @@
 }
 
 /* 8. Identity & Tradition */
+.ap-identity-wrapper {
+  position: relative;
+  width: 100%;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.90) 100%), url('../assets/bg_animation.gif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .ap-identity {
-  background-color: var(--color-white);
+  background-color: transparent;
   color: var(--color-black);
+  position: relative;
+  z-index: 1;
 }
 
 .ap-identity-grid {
@@ -728,9 +768,20 @@
 }
 
 @media (max-width: 768px) {
+  .ap-label-tag {
+    margin-top: 16px;
+    margin-bottom: 30px;
+  }
   .ap-section {
-    padding-top: clamp(50px, 7vw, 80px);
-    padding-bottom: clamp(50px, 7vw, 80px);
+    padding-top: clamp(85px, 14vw, 115px);
+    padding-bottom: clamp(85px, 14vw, 115px);
+  }
+  .ap-live-banner {
+    padding: clamp(85px, 14vw, 115px) 0;
+  }
+  .ap-discography {
+    padding-top: clamp(85px, 14vw, 115px);
+    padding-bottom: clamp(85px, 14vw, 115px);
   }
   .ap-stats-container {
     flex-direction: column;
@@ -764,12 +815,16 @@
 }
 
 @media (max-width: 480px) {
+  .ap-label-tag {
+    margin-top: 20px;
+    margin-bottom: 32px;
+  }
   .ap-section {
-    padding-top: clamp(40px, 6vw, 60px);
-    padding-bottom: clamp(40px, 6vw, 60px);
+    padding-top: clamp(85px, 16vw, 115px);
+    padding-bottom: clamp(85px, 16vw, 115px);
   }
   .ap-hero-wrapper {
-    padding-top: 80px;
+    padding-top: 85px;
   }
   .ap-hero-title {
     font-size: clamp(28px, 10vw, 42px);
@@ -779,7 +834,7 @@
     font-size: 15px;
   }
   .ap-contact-section {
-    padding: clamp(60px, 8vw, 100px) 0 clamp(40px, 6vw, 80px) 0;
+    padding: clamp(95px, 16vw, 125px) 0 clamp(75px, 11vw, 105px) 0;
   }
   .ap-contact-title {
     font-size: clamp(24px, 7.5vw, 36px);

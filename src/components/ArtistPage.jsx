@@ -7,6 +7,7 @@ import MagneticButton from './MagneticButton';
 import MusicPlayer from './MusicPlayer';
 import heroBgVideo from '../assets/herosection_bg.mp4';
 import instagramVideo from '../assets/instagram.mp4';
+import bgTabGif from '../assets/bg_tab.gif';
 
 const tracks = [
   {
@@ -173,7 +174,10 @@ const ArtistPage = () => {
 
       {/* 4. Sub-banner */}
       <section className="ap-subbanner">
-        <div className="container">
+        <div className="container ap-subbanner-container">
+          <div className="ap-subbanner-media">
+            <img src={bgTabGif} alt="Creating and Sharing Music Since 2014" className="ap-subbanner-gif" />
+          </div>
           <h2 className="ap-subbanner-text">
             <TypewriterText text="CREATING AND SHARING MUSIC SINCE 2014." loop={true} />
           </h2>
@@ -249,34 +253,36 @@ const ArtistPage = () => {
       </section>
 
       {/* 8. Identity & Tradition */}
-      <section className="container ap-section ap-identity">
-        <div className="ap-label-tag">
-          <span className="red-text">04</span> / IDENTITY
-        </div>
-        <div className="ap-identity-grid">
-          <div className="ap-identity-left">
-            <h2 className="ap-section-heading">
-              <TypewriterText text={"MEWATI GHARANA.\nCONTEMPORARY SOUND."} />
-            </h2>
+      <section className="ap-identity-wrapper">
+        <div className="container ap-section ap-identity">
+          <div className="ap-label-tag">
+            <span className="red-text">04</span> / IDENTITY
           </div>
-          <div className="ap-identity-right">
-            <p>
-              Trained in Hindustani Classical under the Mewati Gharana, Dhaval's vocal technique balances precision and emotional depth. That grounding gives his Gujarati pop releases a rare authenticity — traditional phrasing delivered with contemporary production.
-            </p>
+          <div className="ap-identity-grid">
+            <div className="ap-identity-left">
+              <h2 className="ap-section-heading">
+                <TypewriterText text={"MEWATI GHARANA.\nCONTEMPORARY SOUND."} />
+              </h2>
+            </div>
+            <div className="ap-identity-right">
+              <p>
+                Trained in Hindustani Classical under the Mewati Gharana, Dhaval's vocal technique balances precision and emotional depth. That grounding gives his Gujarati pop releases a rare authenticity — traditional phrasing delivered with contemporary production.
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div className="ap-pillars-row">
-          <div className="ap-pillar-item">
-            <h3>MEWATI GHARANA</h3>
-          </div>
-          <span className="ap-pillar-dot">•</span>
-          <div className="ap-pillar-item">
-            <h3>HINDUSTANI CLASSICAL</h3>
-          </div>
-          <span className="ap-pillar-dot">•</span>
-          <div className="ap-pillar-item highlight-red">
-            <h3>CONTEMPORARY GUJARATI POP</h3>
+          <div className="ap-pillars-row">
+            <div className="ap-pillar-item">
+              <h3>MEWATI GHARANA</h3>
+            </div>
+            <span className="ap-pillar-dot">•</span>
+            <div className="ap-pillar-item">
+              <h3>HINDUSTANI CLASSICAL</h3>
+            </div>
+            <span className="ap-pillar-dot">•</span>
+            <div className="ap-pillar-item highlight-red">
+              <h3>CONTEMPORARY GUJARATI POP</h3>
+            </div>
           </div>
         </div>
       </section>

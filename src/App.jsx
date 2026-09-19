@@ -10,6 +10,8 @@ import Footer from './components/Footer'
 import FounderPage from './components/FounderPage'
 import ArtistPage from './components/ArtistPage'
 
+import ContactPage from './components/ContactPage'
+
 function App() {
   const [currentHash, setCurrentHash] = useState(window.location.hash || '');
 
@@ -18,7 +20,7 @@ function App() {
       const hash = window.location.hash || '';
       setCurrentHash(hash);
       
-      if (hash === '#founder' || hash === '#portfolio' || hash === '#artist' || hash === '' || hash === '#home' || hash === '#about') {
+      if (hash === '#founder' || hash === '#portfolio' || hash === '#artist' || hash === '#contact' || hash === '' || hash === '#home' || hash === '#about') {
         window.scrollTo(0, 0);
       }
     };
@@ -29,6 +31,7 @@ function App() {
 
   const isFounderPage = currentHash === '#founder' || currentHash === '#portfolio';
   const isArtistPage = currentHash === '#artist';
+  const isContactPage = currentHash === '#contact';
 
   return (
     <>
@@ -37,6 +40,8 @@ function App() {
         <FounderPage />
       ) : isArtistPage ? (
         <ArtistPage />
+      ) : isContactPage ? (
+        <ContactPage />
       ) : (
         <>
           <HeroSection />
@@ -47,7 +52,7 @@ function App() {
           <InstagramSection />
         </>
       )}
-      <Footer hideCta={isArtistPage} />
+      <Footer hideCta={isArtistPage || isContactPage} />
     </>
   );
 }
