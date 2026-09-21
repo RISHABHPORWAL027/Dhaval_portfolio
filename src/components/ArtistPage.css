@@ -629,10 +629,7 @@
 .ap-identity-wrapper {
   position: relative;
   width: 100%;
-  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.90) 100%), url('../assets/bg_animation.gif');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: #ffffff;
 }
 
 .ap-identity {

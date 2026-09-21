@@ -4,11 +4,12 @@ import { TextRotate } from './ui/text-rotate';
 import './ContactPage.css';
 import TypewriterText from './TypewriterText';
 import MagneticButton from './MagneticButton';
-import concertVideo from '../assets/herosection_bg.mp4';
+import contactusBgVideo from '../assets/contactus_bg.mp4';
 import allbyplayVideo from '../assets/allbyplay_instagram.mp4';
 import screenBg from '../assets/screen.png';
 import contactBg from '../assets/contact_bg.png';
 import mixTabGif from '../assets/mix_tab.gif';
+import mumbaiMapImg from '../assets/mumbai_map_graphic.jpg';
 
 const questOptions = [
   { id: 'founder', title: 'FOUNDER VENTURES', icon: '💼', desc: 'Strategy, creative business & partnerships' },
@@ -30,27 +31,6 @@ const pathOptions = [
     desc: 'For live performances, music, media and collaborations.',
     actionText: 'START AN ARTIST CONVERSATION',
     modalType: 'Artist Bookings'
-  },
-  {
-    id: 'marketing',
-    title: '360° MUSIC MARKETING',
-    desc: 'For full-suite marketing campaigns, label services and ecosystem growth.',
-    actionText: 'START A MARKETING CONVERSATION',
-    modalType: '360° Music Marketing'
-  },
-  {
-    id: 'creative',
-    title: 'CREATIVE DIRECTION & BRAND STRATEGY',
-    desc: 'For visual identity, music video direction, concepts and release storytelling.',
-    actionText: 'START A CREATIVE CONVERSATION',
-    modalType: 'Creative Direction & Strategy'
-  },
-  {
-    id: 'speaking',
-    title: 'KEYNOTES & INDUSTRY TALKS',
-    desc: 'For keynote sessions, music business panels, workshops and podcasts.',
-    actionText: 'BOOK A SPEAKING ENGAGEMENT',
-    modalType: 'Keynotes & Speaking'
   }
 ];
 
@@ -67,136 +47,58 @@ const strategyPhrases = [
   { first: 'CREATIVE', second: 'DIRECTION' }
 ];
 
-const exampleImages = [
-  {
-    url: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=60",
-    author: "FOUNDER COLLABORATIONS",
-    desc: "For ventures, creative business, strategy and partnerships.",
-    link: "#",
-    title: "FOUNDER COLLABORATIONS",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&auto=format&fit=crop&q=60",
-    author: "ARTIST BOOKINGS",
-    desc: "For live performances, music, media and collaborations.",
-    link: "#",
-    title: "ARTIST BOOKINGS",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop&q=60",
-    author: "360° MUSIC MARKETING",
-    desc: "For full-suite marketing campaigns, label services and ecosystem growth.",
-    link: "#",
-    title: "360° MUSIC MARKETING",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&auto=format&fit=crop&q=60",
-    author: "CREATIVE DIRECTION & BRAND STRATEGY",
-    desc: "For visual identity, music video direction, concepts and release storytelling.",
-    link: "#",
-    title: "CREATIVE DIRECTION & BRAND STRATEGY",
-  }
-];
-
-function Preview() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const textRotateRef = useRef(null);
-  const trackRef = useRef(null);
-
-  const handleScroll = (e) => {
-    const scrollTop = e.target.scrollTop;
-    const itemHeight = e.target.clientHeight;
-    if (!itemHeight) return;
-    const index = Math.min(
-      exampleImages.length - 1,
-      Math.max(0, Math.round(scrollTop / itemHeight))
-    );
-
-    if (index !== activeIndex) {
-      setActiveIndex(index);
-      if (textRotateRef.current) {
-        textRotateRef.current.jumpTo(index);
-      }
-    }
-  };
-
-  const handleWheel = (e) => {
-    if (!trackRef.current) return;
-    const { scrollTop, scrollHeight, clientHeight } = trackRef.current;
-    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
-    const isAtTop = scrollTop <= 10;
-
-    if ((isAtBottom && e.deltaY > 0) || (isAtTop && e.deltaY < 0)) {
-      window.scrollBy({ top: e.deltaY, behavior: 'auto' });
-    }
-  };
+function EnquiriesSection({ openContactModal }) {
+  const [activeHoverIndex, setActiveHoverIndex] = useState(0);
 
   return (
-    <div className="cp-preview-outer-wrapper" onWheel={handleWheel}>
-      <div className="container cp-preview-inner-container">
-        
-        {/* Fixed Top Section Header */}
-        <div className="cp-preview-top-header cp-section-header">
+    <section className="cp-enquiries-section-wrapper">
+      <div className="container cp-enquiries-inner-container">
+        {/* Section Header */}
+        <div className="cp-section-header cp-enquiries-header">
           <span className="cp-subhead-tag">
-            <span className="red-text font-space bold-tag-num">01</span> <span className="black-tag-text">/ ENQUIRIES</span>
+            <span className="red-text font-space bold-tag-num">01</span>{' '}
+            <span className="black-tag-text">/ ENQUIRIES</span>
           </span>
           <h2 className="cp-section-title">CHOOSE YOUR PATH.</h2>
         </div>
 
-        {/* Sticky Text Box */}
-        <div className="cp-preview-sticky-bar">
-          <div className="cp-preview-text-box">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIndex}
-                initial={{ opacity: 0, y: 30, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -30, scale: 0.98 }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                className="cp-preview-motion-content"
+        {/* 2-Column Split Layout */}
+        <div className="cp-enquiries-grid">
+          {/* Left Column: List of Path Options */}
+          <div className="cp-enquiries-list">
+            {pathOptions.map((path, idx) => (
+              <div 
+                key={path.id} 
+                className={`cp-enquiry-item ${activeHoverIndex === idx ? 'is-active' : ''}`}
+                onMouseEnter={() => setActiveHoverIndex(idx)}
+                onClick={() => openContactModal(path.modalType)}
               >
-                <TextRotate
-                  ref={textRotateRef}
-                  texts={[exampleImages[activeIndex].author]}
-                  mainClassName="cp-preview-text-rotate red-text font-black"
-                  splitLevelClassName="overflow-hidden pb-2"
-                  staggerFrom={"first"}
-                  animatePresenceMode="wait"
-                  loop={false}
-                  auto={false}
-                  staggerDuration={0.012}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ type: "spring", damping: 25, stiffness: 280 }}
-                />
+                <div className="cp-enquiry-body">
+                  <h3 className="cp-enquiry-title">{path.title}</h3>
+                  <p className="cp-enquiry-desc">{path.desc}</p>
+                </div>
+                
+                <div className="cp-enquiry-divider"></div>
+                
+                <div className="cp-enquiry-action-row">
+                  <span className="cp-enquiry-action-text">{path.actionText}</span>
+                  <span className="cp-enquiry-arrow">→</span>
+                </div>
 
-                <motion.p
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-                  className="cp-preview-subheading"
-                >
-                  {exampleImages[activeIndex].desc}
-                </motion.p>
-              </motion.div>
-            </AnimatePresence>
+                <div className="cp-enquiry-divider"></div>
+              </div>
+            ))}
+          </div>
+
+          {/* Right Column: Image Placeholder */}
+          <div className="cp-enquiries-image-col">
+            <div className="cp-enquiries-image-placeholder">
+              {/* Rounded light grey box placeholder for image */}
+            </div>
           </div>
         </div>
-
-        {/* Scroll Track with 4 Snapping Image Items */}
-        <div ref={trackRef} className="cp-preview-scroll-track" onScroll={handleScroll}>
-          {exampleImages.map((img, i) => (
-            <div key={i} className="cp-preview-item-section">
-              <div className="cp-preview-image-box">
-                <img src={img.url} alt={img.title} className="cp-preview-img" />
-              </div>
-            </div>
-          ))}
-        </div>
-
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -311,7 +213,7 @@ const ContactPage = () => {
         {/* Full Background Video */}
         <video 
           ref={videoRef}
-          src={concertVideo} 
+          src={contactusBgVideo} 
           autoPlay 
           loop 
           muted 
@@ -325,7 +227,7 @@ const ContactPage = () => {
         <section className="container cp-section cp-hero">
           <div className="cp-hero-content-full">
             <h1 className="cp-hero-title">
-              LET’S <span className="hover-turn-red red-text">BUILD</span> SOMETHING.
+              <TypewriterText text="LET’S BUILD SOMETHING." highlightWords={["BUILD"]} stagger={0.09} />
             </h1>
             
             <p className="cp-hero-subtitle">
@@ -343,8 +245,8 @@ const ContactPage = () => {
 
 
 
-      {/* TEXT ROTATE SCROLL DEMO SECTION */}
-      <Preview />
+      {/* SECTION 1: CHOOSE YOUR PATH (01 / ENQUIRIES) */}
+      <EnquiriesSection openContactModal={openContactModal} />
 
       {/* SECTION 3: WORK WITH ALL BY PLAY */}
       <div className="cp-abp-section-wrapper">
@@ -414,12 +316,11 @@ const ContactPage = () => {
             <span className="cp-subhead-tag">
               <span className="red-text font-space bold-tag-num">03</span> <span className="black-tag-text">/ DIRECT</span>
             </span>
-            <span className="scroll-auto-tag font-space">SCROLL AUTOMATIC</span>
           </div>
 
           <div className="cp-direct-main">
             <h2 className="cp-direct-title-exact hover-turn-red">
-              PREFER EMAIL<br />OR A CALL?
+              <TypewriterText text={"PREFER EMAIL\nOR A CALL?"} stagger={0.09} />
             </h2>
 
             <div className="cp-red-accent-box">
@@ -503,7 +404,7 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* SECTION 6: BASED IN INDIA (EXACT MATCH USER DESIGN: 04 / CONTEXT & TARGET RADAR BOX) */}
+      {/* SECTION 6: BASED IN INDIA (EXACT MATCH USER DESIGN: 04 / CONTEXT & ANIMATED GOOGLE MAP PIN) */}
       <div className="cp-context-section-wrapper">
         <section className="container cp-section cp-context-section">
           <div className="cp-context-split">
@@ -514,34 +415,106 @@ const ContactPage = () => {
               </span>
 
               <h2 className="cp-context-title hover-turn-red">
-                BASED IN INDIA.<br />
-                WORKING ACROSS<br />
-                MUSIC AND<br />
-                BUSINESS.
+                <TypewriterText text={"BASED IN INDIA.\nWORKING ACROSS\nMUSIC AND\nBUSINESS."} stagger={0.09} />
               </h2>
 
               <p className="cp-context-desc">
                 For collaborations, projects and enquiries from India and international markets. Headquartered in Mumbai (Andheri West).
               </p>
+
+              <div className="cp-context-actions">
+                <a 
+                  href="https://www.google.com/maps/search/?api=1&query=19.1197046,72.8335048"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cp-location-link-btn font-space"
+                >
+                  <span className="btn-dot-live"></span>
+                  EXPLORE MUMBAI HQ ON GOOGLE MAPS ↗
+                </a>
+              </div>
             </div>
 
-            {/* Right Column: Live Interactive Google Map Box */}
+            {/* Right Column: Live Interactive Google Map Box with Animated Location Pin */}
             <div className="cp-context-right">
               <div className="cp-target-radar-box hover-glow-red">
-                <iframe
-                  title="All By Play Andheri West Mumbai Location"
-                  src="https://maps.google.com/maps?q=19.1197046,72.8335048&z=14&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0, filter: 'contrast(1.05) saturate(1.1)' }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
+                {/* Custom Graphic Map Aligned with Design Aesthetic */}
+                <img
+                  src={mumbaiMapImg}
+                  alt="Mumbai Andheri West Graphic Location Map"
+                  className="cp-custom-map-image"
+                />
 
-                {/* Target Overlay Badge */}
+                {/* Radar Grid & Crosshair Lines Overlay */}
+                <div className="cp-map-grid-overlay">
+                  <div className="cp-grid-line-h"></div>
+                  <div className="cp-grid-line-v"></div>
+                  <div className="cp-corner-bracket top-left"></div>
+                  <div className="cp-corner-bracket top-right"></div>
+                  <div className="cp-corner-bracket bottom-left"></div>
+                  <div className="cp-corner-bracket bottom-right"></div>
+                </div>
+
+                {/* Center Animated Location Pin attached to Mumbai coordinates */}
                 <a 
-                  href="https://share.google/wCu4qvzzuixAKqfj9" 
+                  href="https://www.google.com/maps/search/?api=1&query=19.1197046,72.8335048"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cp-animated-map-pin-wrapper"
+                  title="Click to view Mumbai location on Google Maps"
+                >
+                  {/* Tooltip Card above pin */}
+                  <div className="cp-pin-tooltip">
+                    <div className="cp-tooltip-header font-space">
+                      <span className="cp-live-pulse-dot"></span>
+                      MUMBAI HQ
+                    </div>
+                    <div className="cp-tooltip-sub font-space">Click to open map ↗</div>
+                  </div>
+
+                  {/* Pulsing Sonar Waves at Ground Level */}
+                  <div className="cp-pin-sonar-waves">
+                    <div className="cp-sonar-ring ring-1"></div>
+                    <div className="cp-sonar-ring ring-2"></div>
+                    <div className="cp-sonar-ring ring-3"></div>
+                    <div className="cp-ground-shadow"></div>
+                  </div>
+
+                  {/* Beacon Light Vertical Beam */}
+                  <div className="cp-beacon-beam"></div>
+
+                  {/* Floating Pin Icon */}
+                  <div className="cp-pin-icon-container">
+                    <svg 
+                      className="cp-svg-pin" 
+                      viewBox="0 0 40 52" 
+                      fill="none" 
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g filter="url(#pin-shadow)">
+                        {/* Outer Pin Body */}
+                        <path 
+                          d="M20 2C10.6112 2 3 9.61116 3 19C3 29.5 17.5 48 20 50C22.5 48 37 29.5 37 19C37 9.61116 29.3888 2 20 2Z" 
+                          fill="#ff0000" 
+                          stroke="#ffffff" 
+                          strokeWidth="2"
+                        />
+                        {/* Inner Circle / Core */}
+                        <circle cx="20" cy="19" r="7" fill="#ffffff" />
+                        <circle cx="20" cy="19" r="4" fill="#0a0a0a" />
+                      </g>
+                      <defs>
+                        <filter id="pin-shadow" x="0" y="0" width="40" height="56" filterUnits="userSpaceOnUse">
+                          <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#ff0000" floodOpacity="0.4" />
+                        </filter>
+                      </defs>
+                    </svg>
+                  </div>
+                </a>
+
+                {/* Target Info Overlay Badge at Bottom */}
+                <a 
+                  href="https://www.google.com/maps/search/?api=1&query=19.1197046,72.8335048" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="cp-target-info-overlay"

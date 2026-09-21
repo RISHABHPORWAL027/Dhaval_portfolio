@@ -49,6 +49,9 @@ const Navbar = () => {
       </button>
 
       <ul className={`navbar-links ${isMenuOpen ? 'open' : ''}`}>
+        <li style={{ transitionDelay: isMenuOpen ? '0.02s' : '0s' }}>
+          <a href="#" className={activeHash === '' || activeHash === '#' || activeHash === '#home' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>Home</a>
+        </li>
         <li style={{ transitionDelay: isMenuOpen ? '0.05s' : '0s' }}>
           <a href="#founder" className={activeHash === '#founder' || activeHash === '#portfolio' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>Founder</a>
         </li>
