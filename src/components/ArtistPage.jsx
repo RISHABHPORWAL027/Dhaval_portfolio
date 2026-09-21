@@ -5,6 +5,7 @@ import TypewriterText from './TypewriterText';
 import AnimatedCounter from './AnimatedCounter';
 import MagneticButton from './MagneticButton';
 import MusicPlayer from './MusicPlayer';
+import WaterTextPillars from './WaterTextPillars';
 import heroBgVideo from '../assets/herosection_bg.mp4';
 import instagramVideo from '../assets/instagram.mp4';
 import bgTabGif from '../assets/bg_tab.gif';
@@ -271,19 +272,7 @@ const ArtistPage = () => {
             </div>
           </div>
 
-          <div className="ap-pillars-row">
-            <div className="ap-pillar-item">
-              <h3>MEWATI GHARANA</h3>
-            </div>
-            <span className="ap-pillar-dot">•</span>
-            <div className="ap-pillar-item">
-              <h3>HINDUSTANI CLASSICAL</h3>
-            </div>
-            <span className="ap-pillar-dot">•</span>
-            <div className="ap-pillar-item highlight-red">
-              <h3>CONTEMPORARY GUJARATI POP</h3>
-            </div>
-          </div>
+          <WaterTextPillars />
         </div>
       </section>
 
