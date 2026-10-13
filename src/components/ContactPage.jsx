@@ -6,6 +6,7 @@ import TypewriterText from './TypewriterText';
 import MagneticButton from './MagneticButton';
 import contactusBgVideo from '../assets/contactus_bg.mp4';
 import allbyplayVideo from '../assets/allbyplay_instagram.mp4';
+import enquiriesVideo from '../assets/Video-85335.mp4';
 import screenBg from '../assets/screen.png';
 import contactBg from '../assets/contact_bg.png';
 import mixTabGif from '../assets/mix_tab.gif';
@@ -90,10 +91,17 @@ function EnquiriesSection({ openContactModal }) {
             ))}
           </div>
 
-          {/* Right Column: Image Placeholder */}
+          {/* Right Column: Video Placeholder */}
           <div className="cp-enquiries-image-col">
             <div className="cp-enquiries-image-placeholder">
-              {/* Rounded light grey box placeholder for image */}
+              <video 
+                src={enquiriesVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="cp-enquiries-video"
+              />
             </div>
           </div>
         </div>

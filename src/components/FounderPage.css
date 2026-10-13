@@ -231,8 +231,37 @@
 
 .fp-origin-placeholder {
   flex: 1;
-  background-color: #e0e0e0;
-  min-height: 200px;
+  background-color: #0d0d0d;
+  min-height: 220px;
+  position: relative;
+  overflow: hidden;
+}
+
+.fp-origin-placeholder iframe,
+.fp-origin-iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 126%;
+  height: 126%;
+  transform: translate(-50%, -50%);
+  border: none;
+  display: block;
+  pointer-events: none;
+}
+
+.fp-origin-iframe-short {
+  width: 220%;
+  height: 220%;
+  transform: translate(-50%, -50%);
+}
+
+.fp-origin-iframe-shield {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: transparent;
+  pointer-events: auto;
 }
 
 /* Black Background Section - Turning Point */
@@ -523,6 +552,14 @@
   margin-bottom: -60px; /* pull stats card up */
   position: relative;
   z-index: 1;
+  overflow: hidden;
+}
+
+.fp-huge-placeholder iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
 }
 
 /* Stats Card */
@@ -717,8 +754,9 @@
   }
   .fp-origin-placeholder {
     width: 100%;
-    max-width: 320px;
-    min-height: 180px;
+    max-width: 360px;
+    aspect-ratio: 16 / 9;
+    min-height: 200px;
   }
   .fp-black-grid {
     flex-direction: column;

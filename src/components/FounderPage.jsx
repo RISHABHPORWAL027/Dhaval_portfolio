@@ -143,11 +143,29 @@ const FounderPage = () => {
                   <TypewriterText text={"“HAVING THE RIGHT\nGURU, MENTOR OR\nTEAM AROUND YOU\nCAN MAKE THAT\nJOURNEY MUCH\nEASIER.”"} />
                 </h3>
               </div>
-              <div className="fp-origin-placeholder"></div>
+              <div className="fp-origin-placeholder">
+                <iframe
+                  className="fp-origin-iframe fp-origin-iframe-short"
+                  src="https://www.youtube-nocookie.com/embed/-_m_dBaV1RM?autoplay=1&mute=1&loop=1&playlist=-_m_dBaV1RM&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&playsinline=1"
+                  title="Saaje Saaje | Dhaval Kothari"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+                <div className="fp-origin-iframe-shield" />
+              </div>
             </div>
             
             <div className="fp-origin-quotes-row">
-              <div className="fp-origin-placeholder"></div>
+              <div className="fp-origin-placeholder">
+                <iframe
+                  className="fp-origin-iframe"
+                  src="https://www.youtube-nocookie.com/embed/-nZF_DJCjiA?autoplay=1&mute=1&loop=1&playlist=-nZF_DJCjiA&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&playsinline=1"
+                  title="Kaif Chadiyo Re | Dhaval Kothari"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+                <div className="fp-origin-iframe-shield" />
+              </div>
               <div className="fp-origin-quote-box">
                 <div className="fp-quote-line"></div>
                 <h3>
@@ -310,7 +328,14 @@ const FounderPage = () => {
             <h2><TypewriterText text={"NEVER A ONE-SIZE\nFITS-ALL APPROACH."} /></h2>
           </div>
         </div>
-        <div className="fp-huge-placeholder"></div>
+        <div className="fp-huge-placeholder">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/Fmzhobnk2vY?autoplay=1&mute=1&loop=1&playlist=Fmzhobnk2vY&controls=1&modestbranding=1&rel=0&playsinline=1"
+            title="Unchi Talavadi | Behind The Scenes | Dhaval Kothari"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </div>
 
         <motion.div 
           className="fp-stats-card"
