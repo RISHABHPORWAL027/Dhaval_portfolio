@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import './MagneticButton.css';
 
-const MagneticButton = ({ text, href, lightTheme = false }) => {
+const MagneticButton = ({ text, href, lightTheme = false, target, rel }) => {
   const ref = useRef(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -19,9 +19,13 @@ const MagneticButton = ({ text, href, lightTheme = false }) => {
     setPosition({ x: 0, y: 0 });
   };
 
+  const isExternal = href && (href.startsWith('http://') || href.startsWith('https://'));
+
   return (
     <motion.a
       href={href}
+      target={target || (isExternal ? '_blank' : undefined)}
+      rel={rel || (isExternal ? 'noopener noreferrer' : undefined)}
       ref={ref}
       onMouseMove={handleMouse}
       onMouseLeave={reset}

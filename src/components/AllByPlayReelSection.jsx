@@ -25,7 +25,7 @@ const abpHighlightCards = [
 
 const AllByPlayReelSection = () => {
   const videoRef = useRef(null);
-  const [isMuted, setIsMuted] = useState(false); // Default sound enabled
+  const [isMuted, setIsMuted] = useState(true); // Default sound off
   const [activeCardIndex, setActiveCardIndex] = useState(0);
 
   // Auto rotate cards every 4 seconds

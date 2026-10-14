@@ -95,6 +95,35 @@
   color: #555;
 }
 
+.footer-social-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.footer-social-link:hover {
+  background: var(--color-red);
+  border-color: var(--color-red);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(230, 0, 0, 0.35);
+}
+
 .footer-credits {
   font-size: 11px;
   font-weight: 500;
@@ -149,6 +178,9 @@
   .footer-logo {
     order: 1;
     align-items: center;
+  }
+  .footer-social-icons {
+    justify-content: center;
   }
   .footer-links {
     order: 2;

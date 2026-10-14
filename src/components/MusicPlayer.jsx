@@ -59,9 +59,16 @@ const MusicPlayer = ({ tracks = defaultTracks }) => {
   const [currentSeconds, setCurrentSeconds] = useState(0);
   const [isShuffle, setIsShuffle] = useState(false);
   const [isRepeat, setIsRepeat] = useState(false);
+  const [isMuted, setIsMuted] = useState(true); // Default sound off
 
   const iframeRef = useRef(null);
   const currentTrack = tracks[currentIdx] || tracks[0];
+
+  const toggleMute = () => {
+    const nextMute = !isMuted;
+    setIsMuted(nextMute);
+    sendIframeCommand(nextMute ? 'mute' : 'unMute');
+  };
 
   // Synchronize timer with active video playback
   useEffect(() => {
@@ -188,7 +195,7 @@ const MusicPlayer = ({ tracks = defaultTracks }) => {
                 ref={iframeRef}
                 key={`yt-player-${currentTrack.videoId}`}
                 className="mp-real-yt-iframe"
-                src={`https://www.youtube-nocookie.com/embed/${currentTrack.videoId}?autoplay=${isPlaying ? 1 : 0}&enablejsapi=1&playsinline=1&rel=0`}
+                src={`https://www.youtube-nocookie.com/embed/${currentTrack.videoId}?autoplay=${isPlaying ? 1 : 0}&mute=${isMuted ? 1 : 0}&enablejsapi=1&playsinline=1&rel=0`}
                 title={currentTrack.title}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
@@ -204,19 +211,31 @@ const MusicPlayer = ({ tracks = defaultTracks }) => {
                 {isPlaying ? 'NOW PLAYING' : 'READY TO PLAY'}
               </span>
 
-              <a
-                href={currentTrack.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mp-options-btn"
-                title="Watch on YouTube"
-              >
-                <span className="mp-redirect-label">YOUTUBE</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="7" y1="17" x2="17" y2="7" />
-                  <polyline points="7 7 17 7 17 17" />
-                </svg>
-              </a>
+              <div className="mp-header-right-btns">
+                <button
+                  type="button"
+                  className={`mp-header-sound-btn ${!isMuted ? 'sound-on' : ''}`}
+                  onClick={toggleMute}
+                  title={isMuted ? 'Turn Sound On' : 'Turn Sound Off'}
+                >
+                  <span className="mp-sound-icon">{isMuted ? '🔇' : '🔊'}</span>
+                  <span className="mp-sound-text">{isMuted ? 'SOUND OFF' : 'SOUND ON'}</span>
+                </button>
+
+                <a
+                  href={currentTrack.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mp-options-btn"
+                  title="Watch on YouTube"
+                >
+                  <span className="mp-redirect-label">YOUTUBE</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                </a>
+              </div>
             </div>
 
             <AnimatePresence mode="wait">
@@ -305,6 +324,27 @@ const MusicPlayer = ({ tracks = defaultTracks }) => {
                   <polyline points="7 23 3 19 7 15" />
                   <path d="M21 13v2a4 4 0 0 1-4 4H3" />
                 </svg>
+              </button>
+
+              <button
+                type="button"
+                className={`mp-action-btn ${!isMuted ? 'active' : ''}`}
+                onClick={toggleMute}
+                title={isMuted ? 'Turn Sound On' : 'Mute Sound'}
+                aria-label={isMuted ? 'Turn Sound On' : 'Mute Sound'}
+              >
+                {isMuted ? (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                    <line x1="23" y1="9" x2="17" y2="15" />
+                    <line x1="17" y1="9" x2="23" y2="15" />
+                  </svg>
+                ) : (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+                  </svg>
+                )}
               </button>
             </div>
           </div>

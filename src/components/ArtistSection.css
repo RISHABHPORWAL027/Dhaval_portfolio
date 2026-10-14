@@ -117,11 +117,17 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .listen-btn:hover {
   background-color: #c40000;
+  color: #fff;
+  transform: translateY(-2px);
 }
 
 .explore-link {

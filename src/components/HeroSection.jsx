@@ -49,7 +49,7 @@ const HeroSection = () => {
         <p className="hero-description">
           Dhaval Kothari is a founder and Gujarati pop artist working across culture, business and music.
         </p>
-        <MagneticButton href="#projects" text="Explore Our Projects" />
+        <MagneticButton href="https://allbyplay.com/" text="Explore Our Projects" />
       </div>
       <div className="hero-image-container">
         <div className="hero-image-inner">

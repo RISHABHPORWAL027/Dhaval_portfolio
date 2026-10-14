@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import './ArtistSection.css';
-import heroImage from '../assets/herosection_image.png';
+import dhavalMusicImg from '../assets/dhaval_music.png';
 import MagneticButton from './MagneticButton';
 
 const ArtistSection = () => {
@@ -33,7 +33,7 @@ const ArtistSection = () => {
         <div className="artist-container">
           <a href="#artist" className="artist-image-container">
             <img 
-              src={heroImage} 
+              src={dhavalMusicImg} 
               alt="Gujarati Pop Artist" 
               className="artist-image"
             />
@@ -57,8 +57,19 @@ const ArtistSection = () => {
               </p>
               
               <div className="artist-actions">
-                <button className="listen-btn" onClick={() => window.location.hash = '#artist'}>LISTEN TO THE LATEST RELEASE</button>
-                <MagneticButton href="#artist" text="Explore Music" lightTheme={true} />
+                <a 
+                  href="https://www.youtube.com/watch?v=nsS1EQqn8bY&list=RDnsS1EQqn8bY&start_radio=1" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="listen-btn"
+                >
+                  LISTEN TO THE LATEST RELEASE ON YOUTUBE
+                </a>
+                <MagneticButton 
+                  href="https://open.spotify.com/artist/2Nu84CgIbMyb8wgAg3xLEt" 
+                  text="Explore Music on Spotify" 
+                  lightTheme={true} 
+                />
               </div>
             </div>
           </div>

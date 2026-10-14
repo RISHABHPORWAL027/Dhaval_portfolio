@@ -25,7 +25,7 @@ const highlightCardsData = [
 
 const InstagramSection = () => {
   const videoRef = useRef(null);
-  const [isMuted, setIsMuted] = useState(false); // Default sound enabled
+  const [isMuted, setIsMuted] = useState(true); // Default sound off
   const [activeCardIndex, setActiveCardIndex] = useState(0);
 
   // Auto rotate highlight cards every 4 seconds (smooth & slow)
