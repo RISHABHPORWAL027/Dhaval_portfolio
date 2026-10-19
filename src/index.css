@@ -1,22 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 :root {
   --color-black: #0a0a0a;
   --color-white: #ffffff;
   --color-red: #ff0000;
   --color-grey: #a0a0a0;
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: 'Space Grotesk', sans-serif;
   --font-space: 'Space Grotesk', sans-serif;
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html,
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-space);
   background-color: var(--color-white);
   color: var(--color-black);
   -webkit-font-smoothing: antialiased;
@@ -26,6 +27,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-space);
   font-weight: 800;
   text-transform: uppercase;
   line-height: 1;
@@ -40,8 +42,14 @@ ul {
   list-style: none;
 }
 
-button {
+button,
+input,
+textarea,
+select {
   font-family: inherit;
+}
+
+button {
   border: none;
   background: none;
   cursor: pointer;

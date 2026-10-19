@@ -235,6 +235,7 @@
   min-height: 220px;
   position: relative;
   overflow: hidden;
+  border-radius: 6px;
 }
 
 .fp-origin-placeholder iframe,
@@ -242,8 +243,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 126%;
-  height: 126%;
+  width: 140%;
+  height: 140%;
   transform: translate(-50%, -50%);
   border: none;
   display: block;

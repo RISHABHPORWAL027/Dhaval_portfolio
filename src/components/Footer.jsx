@@ -125,6 +125,14 @@ const Footer = ({ hideCta = false }) => {
           <div className="footer-credits">
             Design and Developed by{' '}
             <a 
+              href="https://www.linkedin.com/in/radhika-khade2004/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              RK
+            </a>{' '}
+            &{' '}
+            <a 
               href="https://www.devyugsolutions.com/" 
               target="_blank" 
               rel="noopener noreferrer"

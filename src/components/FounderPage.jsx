@@ -145,9 +145,9 @@ const FounderPage = () => {
               </div>
               <div className="fp-origin-placeholder">
                 <iframe
-                  className="fp-origin-iframe fp-origin-iframe-short"
-                  src="https://www.youtube-nocookie.com/embed/-_m_dBaV1RM?autoplay=1&mute=1&loop=1&playlist=-_m_dBaV1RM&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&playsinline=1"
-                  title="Saaje Saaje | Dhaval Kothari"
+                  className="fp-origin-iframe"
+                  src="https://www.youtube-nocookie.com/embed/MQjEvlwsv9M?autoplay=1&mute=1&loop=1&playlist=MQjEvlwsv9M&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&playsinline=1"
+                  title="Unchi Talavadi | Dhaval Kothari"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                 />
@@ -159,8 +159,8 @@ const FounderPage = () => {
               <div className="fp-origin-placeholder">
                 <iframe
                   className="fp-origin-iframe"
-                  src="https://www.youtube-nocookie.com/embed/-nZF_DJCjiA?autoplay=1&mute=1&loop=1&playlist=-nZF_DJCjiA&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&playsinline=1"
-                  title="Kaif Chadiyo Re | Dhaval Kothari"
+                  src="https://www.youtube-nocookie.com/embed/mXHDn7_tQZI?autoplay=1&mute=1&loop=1&playlist=mXHDn7_tQZI&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&playsinline=1"
+                  title="Dhuni Re Dhakhavi | Dhaval Kothari"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                 />
