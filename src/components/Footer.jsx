@@ -54,7 +54,14 @@ const Footer = ({ hideCta = false }) => {
       <div className="container footer-container" style={{ position: 'relative', zIndex: 1 }}>
         <div className="footer-bottom" style={hideCta ? { borderTop: 'none', paddingTop: 0 } : {}}>
           <div className="footer-logo">
-            <a href="#">DHAVAL KOTHARI</a>
+            <a href="#" className="footer-brand-link">
+              <img 
+                src="/logo_dark.webp" 
+                alt="Dhaval Kothari Logo" 
+                className="footer-logo-img" 
+              />
+              <span className="footer-logo-text">DHAVAL KOTHARI</span>
+            </a>
             <span className="copyright">© {new Date().getFullYear()} All rights reserved</span>
             <div className="footer-social-icons">
               <a 
@@ -147,7 +154,7 @@ const Footer = ({ hideCta = false }) => {
             <li><a href="#contact">CONTACT</a></li>
             <li>
               <a 
-                href="https://open.spotify.com/artist/2Nu84CgIbMyb8wgAg3xLEt" 
+                href="https://www.youtube.com/c/DhavalKothari" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >

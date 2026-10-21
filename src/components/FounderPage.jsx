@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import './FounderPage.css';
 import abpLogo from '../assets/ABP_logo.png';
-import dhavalPaintImg from '../assets/dhaval_paint.jpg';
+import FounderCarousel from './FounderCarousel';
 import AnimatedCounter from './AnimatedCounter';
 import TypewriterText from './TypewriterText';
 import MagneticButton from './MagneticButton';
@@ -313,9 +313,7 @@ const FounderPage = () => {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true }}
             >
-              <div className="fp-approach-img-wrapper">
-                <img src={dhavalPaintImg} alt="Dhaval Kothari" className="fp-approach-img" />
-              </div>
+              <FounderCarousel />
             </motion.div>
           </div>
         

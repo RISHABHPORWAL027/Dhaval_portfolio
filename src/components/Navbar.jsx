@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
+import { prefetchRoute } from '../lib/prefetch';
 
 const Navbar = () => {
   const [activeHash, setActiveHash] = useState('');
@@ -36,7 +37,12 @@ const Navbar = () => {
           href="#" 
           className={activeHash === '' || activeHash === '#' || activeHash === '#home' || activeHash === '#about' ? 'active' : ''}
         >
-          DHAVAL KOTHARI
+          <img 
+            src="/logo_dark.webp" 
+            alt="Dhaval Kothari Logo" 
+            className="navbar-logo-img" 
+          />
+          <span className="navbar-logo-text">DHAVAL KOTHARI</span>
         </a>
       </div>
       
@@ -53,17 +59,41 @@ const Navbar = () => {
           <a href="#" className={activeHash === '' || activeHash === '#' || activeHash === '#home' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>Home</a>
         </li>
         <li style={{ transitionDelay: isMenuOpen ? '0.05s' : '0s' }}>
-          <a href="#founder" className={activeHash === '#founder' || activeHash === '#portfolio' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>Founder</a>
+          <a 
+            href="#founder" 
+            className={activeHash === '#founder' || activeHash === '#portfolio' ? 'active' : ''} 
+            onClick={() => setIsMenuOpen(false)}
+            onMouseEnter={() => prefetchRoute('founder')}
+            onTouchStart={() => prefetchRoute('founder')}
+          >
+            Founder
+          </a>
         </li>
         <li style={{ transitionDelay: isMenuOpen ? '0.1s' : '0s' }}>
-          <a href="#artist" className={activeHash === '#artist' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>Artist</a>
+          <a 
+            href="#artist" 
+            className={activeHash === '#artist' ? 'active' : ''} 
+            onClick={() => setIsMenuOpen(false)}
+            onMouseEnter={() => prefetchRoute('artist')}
+            onTouchStart={() => prefetchRoute('artist')}
+          >
+            Artist
+          </a>
         </li>
         <li style={{ transitionDelay: isMenuOpen ? '0.15s' : '0s' }}>
-          <a href="#contact" className={activeHash === '#contact' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>Contact</a>
+          <a 
+            href="#contact" 
+            className={activeHash === '#contact' ? 'active' : ''} 
+            onClick={() => setIsMenuOpen(false)}
+            onMouseEnter={() => prefetchRoute('contact')}
+            onTouchStart={() => prefetchRoute('contact')}
+          >
+            Contact
+          </a>
         </li>
         <li style={{ transitionDelay: isMenuOpen ? '0.2s' : '0s' }}>
           <a 
-            href="https://open.spotify.com/artist/2Nu84CgIbMyb8wgAg3xLEt" 
+            href="https://www.youtube.com/c/DhavalKothari" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="navbar-listen-btn" 

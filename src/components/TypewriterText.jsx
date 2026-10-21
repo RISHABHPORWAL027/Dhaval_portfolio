@@ -47,33 +47,34 @@ const TypewriterText = ({ text, className, loop = false, speed = 120, delay = 20
   }
 
   // Standard Framer Motion staggered typewriter animation
-  const container = {
-    hidden: { opacity: 1 },
-    visible: (i = 1) => ({
-      opacity: 1,
-      transition: { staggerChildren: stagger, delayChildren: 0.08 * i },
-    }),
-  };
-
-  const child = {
+  const containerVariants = {
+    hidden: { opacity: 0.99 },
     visible: {
       opacity: 1,
-      transition: { duration: 0.01 },
+      transition: {
+        staggerChildren: typeof stagger === 'number' && stagger < 0.05 ? stagger : 0.025,
+        delayChildren: 0.05,
+      },
     },
-    hidden: {
-      opacity: 0,
+  };
+
+  const letterVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { duration: 0.04 },
     },
   };
 
   const lines = (text || '').split('\n');
-  let globalCharIndex = 0;
 
   return (
     <motion.span
       style={{ display: 'inline', wordBreak: 'keep-all', overflowWrap: 'normal' }}
+      variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.05 }}
       className={className}
     >
       {lines.map((line, lineIndex) => {
@@ -96,7 +97,6 @@ const TypewriterText = ({ text, className, loop = false, speed = 120, delay = 20
                   }}
                 >
                   {Array.from(word).map((letter, letterIndex) => {
-                    const currentIndex = globalCharIndex++;
                     const isApostrophe = letter === "'" || letter === '’' || letter === '‘';
                     const isContraction = isApostrophe && letterIndex > 0 && letterIndex < word.length - 1;
                     const isQuote =
@@ -110,10 +110,7 @@ const TypewriterText = ({ text, className, loop = false, speed = 120, delay = 20
                     return (
                       <motion.span
                         key={letterIndex}
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: currentIndex * stagger, duration: 0.01 }}
+                        variants={letterVariants}
                         style={{
                           display: 'inline-block',
                           color: isQuote || isHighlighted ? 'var(--color-red)' : undefined,
@@ -123,20 +120,14 @@ const TypewriterText = ({ text, className, loop = false, speed = 120, delay = 20
                       </motion.span>
                     );
                   })}
-                  {wordIndex < words.length - 1 && (() => {
-                    const spaceIndex = globalCharIndex++;
-                    return (
-                      <motion.span
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: spaceIndex * stagger, duration: 0.01 }}
-                        style={{ display: 'inline-block' }}
-                      >
-                        &nbsp;
-                      </motion.span>
-                    );
-                  })()}
+                  {wordIndex < words.length - 1 && (
+                    <motion.span
+                      variants={letterVariants}
+                      style={{ display: 'inline-block' }}
+                    >
+                      &nbsp;
+                    </motion.span>
+                  )}
                 </span>
               );
             })}

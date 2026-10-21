@@ -109,9 +109,10 @@
 .cp-badge,
 .cp-subhead-tag {
   font-family: var(--font-space);
-  font-size: 0.85rem;
+  font-size: var(--fs-label);
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: var(--ls-label);
+  line-height: var(--lh-label);
   text-transform: uppercase;
   display: inline-block;
   margin-bottom: 12px;
@@ -162,18 +163,20 @@
 }
 
 .cp-hero-title {
-  font-size: clamp(3.2rem, 6.5vw, 5.5rem);
-  font-weight: 900;
-  line-height: 1.02;
-  letter-spacing: -1.5px;
+  font-family: var(--font-space);
+  font-size: var(--fs-hero);
+  font-weight: 800;
+  line-height: var(--lh-hero);
+  letter-spacing: var(--ls-hero);
   text-transform: uppercase;
 }
 
 .cp-hero-subtitle {
-  font-size: 1.25rem;
+  font-family: var(--font-space);
+  font-size: var(--fs-lead);
   color: rgba(255, 255, 255, 0.85);
   max-width: 680px;
-  line-height: 1.6;
+  line-height: var(--lh-lead);
 }
 
 .cp-video-card {
@@ -435,11 +438,13 @@
 }
 
 .cp-section-title {
-  font-size: clamp(2rem, 3.2vw, 3rem);
-  font-weight: 900;
-  letter-spacing: -0.5px;
+  font-family: var(--font-space);
+  font-size: var(--fs-h2);
+  font-weight: 800;
+  letter-spacing: var(--ls-h2);
   color: #000000;
-  line-height: 1.05;
+  line-height: var(--lh-h2);
+  text-transform: uppercase;
   margin-bottom: 0;
 }
 

@@ -24,9 +24,11 @@ const highlightCardsData = [
 ];
 
 const InstagramSection = () => {
+  const sectionRef = useRef(null);
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true); // Default sound off
   const [activeCardIndex, setActiveCardIndex] = useState(0);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
   // Auto rotate highlight cards every 4 seconds (smooth & slow)
   useEffect(() => {
@@ -36,8 +38,28 @@ const InstagramSection = () => {
     return () => clearInterval(cardTimer);
   }, []);
 
+  // Lazy load video only when user approaches the section (within 400px margin)
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setShouldLoadVideo(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '400px' }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   // IntersectionObserver for Video Autoplay & Mute policy fallback
   useEffect(() => {
+    if (!shouldLoadVideo) return;
     const video = videoRef.current;
     if (!video) return;
 
@@ -59,15 +81,15 @@ const InstagramSection = () => {
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.25 }
     );
 
     observer.observe(video);
 
     return () => {
-      if (video) observer.unobserve(video);
+      observer.disconnect();
     };
-  }, [isMuted]);
+  }, [shouldLoadVideo, isMuted]);
 
   // Global user interaction listener to immediately unmute video on first click/tap if sound is ON
   useEffect(() => {
@@ -91,6 +113,7 @@ const InstagramSection = () => {
     if (e && e.stopPropagation) {
       e.stopPropagation();
     }
+    setShouldLoadVideo(true);
     if (videoRef.current) {
       const nextMuted = !isMuted;
       videoRef.current.muted = nextMuted;
@@ -104,7 +127,7 @@ const InstagramSection = () => {
   };
 
   return (
-    <section className="ap-instagram-wrapper" id="instagram">
+    <section className="ap-instagram-wrapper" id="instagram" ref={sectionRef}>
       <div className="ap-instagram-bg-glow"></div>
       <div className="container ap-section ap-instagram-container">
         <div className="ap-label-tag white-text">
@@ -209,9 +232,11 @@ const InstagramSection = () => {
                     loop
                     muted={isMuted}
                     playsInline
-                    preload="auto"
+                    preload="none"
                   >
-                    <source src={instagramVideo} type="video/mp4" />
+                    {shouldLoadVideo && (
+                      <source src={instagramVideo} type="video/mp4" />
+                    )}
                   </video>
                 </div>
               </div>

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import './ArtistSection.css';
-import dhavalMusicImg from '../assets/dhaval_music.png';
+import dhavalMusicImg from '../assets/dhaval_music.webp';
 import MagneticButton from './MagneticButton';
 
 const ArtistSection = () => {
@@ -20,9 +20,9 @@ const ArtistSection = () => {
   return (
     <motion.section 
       className="artist-section"
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.05 }}
       transition={{ duration: 0.8 }}
     >
       <div className="container">
@@ -34,8 +34,12 @@ const ArtistSection = () => {
           <a href="#artist" className="artist-image-container">
             <img 
               src={dhavalMusicImg} 
-              alt="Gujarati Pop Artist" 
+              alt="Gujarati Pop Artist Dhaval Kothari" 
               className="artist-image"
+              loading="lazy"
+              decoding="async"
+              width="454"
+              height="792"
             />
             <div className="red-overlay"></div>
           </a>
@@ -52,8 +56,8 @@ const ArtistSection = () => {
               <span className="red-subtitle">LATEST RELEASE</span>
               <h3>LIVE FOLKTALE SERIES</h3>
               <p>
-                A contemporary take on traditional devotion,<br />
-                blending modern beats with soulful vocals.
+                Taking Gujarati Indie Pop to the global stage,<br />
+                connecting diaspora across India, USA, UK and Canada.
               </p>
               
               <div className="artist-actions">

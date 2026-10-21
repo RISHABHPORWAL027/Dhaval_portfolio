@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import './MagneticButton.css';
 
-const MagneticButton = ({ text, href, lightTheme = false, target, rel }) => {
+const MagneticButton = ({ text, href, lightTheme = false, target, rel, download, icon = 'arrow', onClick }) => {
   const ref = useRef(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -24,6 +24,8 @@ const MagneticButton = ({ text, href, lightTheme = false, target, rel }) => {
   return (
     <motion.a
       href={href}
+      download={download}
+      onClick={onClick}
       target={target || (isExternal ? '_blank' : undefined)}
       rel={rel || (isExternal ? 'noopener noreferrer' : undefined)}
       ref={ref}
@@ -34,9 +36,15 @@ const MagneticButton = ({ text, href, lightTheme = false, target, rel }) => {
       className={`magnetic-btn ${lightTheme ? 'light' : ''}`}
     >
       <div className="magnetic-circle">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="magnetic-arrow">
-          <path d="M7 17L17 7M17 7H8M17 7V16" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+        {icon === 'download' ? (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="magnetic-arrow">
+            <path d="M12 4v11m0 0l-4.5-4.5m4.5 4.5l4.5-4.5M4 19h16" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        ) : (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="magnetic-arrow">
+            <path d="M7 17L17 7M17 7H8M17 7V16" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        )}
       </div>
       <span className="magnetic-text">{text}</span>
     </motion.a>

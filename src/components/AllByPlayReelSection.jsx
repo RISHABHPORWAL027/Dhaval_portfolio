@@ -24,9 +24,11 @@ const abpHighlightCards = [
 ];
 
 const AllByPlayReelSection = () => {
+  const sectionRef = useRef(null);
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true); // Default sound off
   const [activeCardIndex, setActiveCardIndex] = useState(0);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
   // Auto rotate cards every 4 seconds
   useEffect(() => {
@@ -36,8 +38,28 @@ const AllByPlayReelSection = () => {
     return () => clearInterval(cardTimer);
   }, []);
 
+  // Lazy load video only when approaching viewport (within 400px)
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setShouldLoadVideo(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '400px' }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   // IntersectionObserver for video autoplay & unmuted policy fallback
   useEffect(() => {
+    if (!shouldLoadVideo) return;
     const video = videoRef.current;
     if (!video) return;
 
@@ -58,15 +80,15 @@ const AllByPlayReelSection = () => {
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.25 }
     );
 
     observer.observe(video);
 
     return () => {
-      if (video) observer.unobserve(video);
+      observer.disconnect();
     };
-  }, [isMuted]);
+  }, [shouldLoadVideo, isMuted]);
 
   // Global user interaction listener to immediately unmute video on first click/tap if sound is ON
   useEffect(() => {
@@ -90,6 +112,7 @@ const AllByPlayReelSection = () => {
     if (e && e.stopPropagation) {
       e.stopPropagation();
     }
+    setShouldLoadVideo(true);
     if (videoRef.current) {
       const nextMuted = !isMuted;
       videoRef.current.muted = nextMuted;
@@ -103,7 +126,7 @@ const AllByPlayReelSection = () => {
   };
 
   return (
-    <section className="abp-reel-wrapper" id="abp-reel">
+    <section className="abp-reel-wrapper" id="abp-reel" ref={sectionRef}>
       <div className="abp-reel-bg-glow"></div>
       <div className="container ap-section abp-reel-container">
         <div className="ap-label-tag white-text">
@@ -208,9 +231,11 @@ const AllByPlayReelSection = () => {
                     loop
                     muted={isMuted}
                     playsInline
-                    preload="auto"
+                    preload="none"
                   >
-                    <source src={allbyplayVideo} type="video/mp4" />
+                    {shouldLoadVideo && (
+                      <source src={allbyplayVideo} type="video/mp4" />
+                    )}
                   </video>
                 </div>
               </div>

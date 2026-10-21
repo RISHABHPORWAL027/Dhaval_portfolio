@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import './HeroSection.css';
-import founderImage from '../assets/founder_image.png'; // Swapped image
+import founderImage from '../assets/founder_image.webp'; // Optimized 50KB WebP
 import TypewriterText from './TypewriterText';
 import MagneticButton from './MagneticButton';
 
@@ -45,9 +45,9 @@ const HeroSection = () => {
         <h1 className="hero-heading">
           <TypewriterText text={"BUILDING\nAND MAKING."} loop={true} speed={70} delay={2200} />
         </h1>
-        <p className="hero-label">FOUNDER / ARTIST / GUJARATI POP</p>
+        <p className="hero-label">FOUNDER / ARTIST / GUJARATI INDIE POP</p>
         <p className="hero-description">
-          Dhaval Kothari is a founder and Gujarati pop artist working across culture, business and music.
+          Dhaval Kothari is a founder and Gujarati Indie Pop artist working across culture, business and music.
         </p>
         <MagneticButton href="https://allbyplay.com/" text="Explore Our Projects" />
       </div>
@@ -55,8 +55,12 @@ const HeroSection = () => {
         <div className="hero-image-inner">
           <img 
             src={founderImage} 
-            alt="Dhaval Kothari" 
-            className="hero-image" 
+            alt="Dhaval Kothari - Founder & Gujarati Indie Pop Artist" 
+            className="hero-image"
+            fetchPriority="high"
+            decoding="async"
+            width="868"
+            height="914"
           />
         </div>
       </div>

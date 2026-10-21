@@ -1,6 +1,6 @@
 .artist-section {
   background-color: var(--color-black);
-  background-image: linear-gradient(180deg, rgba(10, 10, 10, 0.88) 0%, rgba(10, 10, 10, 0.94) 100%), url('../assets/bg-screen-1.png');
+  background-image: linear-gradient(180deg, rgba(10, 10, 10, 0.88) 0%, rgba(10, 10, 10, 0.94) 100%), url('../assets/bg-screen-1.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -57,13 +57,13 @@
 
 .artist-reveal-heading {
   font-family: var(--font-space);
-  font-size: clamp(36px, 4.5vw, 72px);
+  font-size: var(--fs-h2);
   font-style: normal;
   font-weight: 700;
-  line-height: 0.95;
-  letter-spacing: -2px;
+  line-height: var(--lh-h2);
+  letter-spacing: var(--ls-h2);
   text-transform: uppercase;
-  margin-bottom: clamp(30px, 4vw, 60px);
+  margin-bottom: clamp(24px, 3vw, 40px);
   word-break: keep-all;
   overflow-wrap: normal;
 }
@@ -75,28 +75,32 @@
 .red-subtitle {
   color: var(--color-red);
   font-family: var(--font-space);
-  font-size: 11px;
+  font-size: var(--fs-label);
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: var(--ls-label);
+  line-height: var(--lh-label);
   text-transform: uppercase;
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .artist-details h3 {
   font-family: var(--font-space);
-  font-size: clamp(20px, 2vw, 28px);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  letter-spacing: var(--ls-h3);
   font-weight: 700;
-  letter-spacing: 0px;
   margin-bottom: 16px;
 }
 
 .artist-details p {
-  color: #999;
-  font-size: clamp(15px, 1.4vw, 18px);
-  line-height: 1.55;
-  max-width: 450px;
-  margin-bottom: 36px;
+  color: rgba(245, 245, 243, 0.70);
+  font-family: var(--font-space);
+  font-size: var(--fs-lead);
+  font-weight: 500;
+  line-height: var(--lh-lead);
+  max-width: 480px;
+  margin-bottom: 32px;
 }
 
 .artist-actions {
@@ -168,7 +172,8 @@
     margin: 0 auto;
   }
   .artist-reveal-heading {
-    font-size: clamp(30px, 5vw, 54px);
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2);
     margin-bottom: 30px;
   }
 }
@@ -184,16 +189,18 @@
     max-width: min(280px, 75vw);
   }
   .artist-reveal-heading {
-    font-size: clamp(24px, 7.5vw, 38px);
-    letter-spacing: -1px;
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2);
+    letter-spacing: var(--ls-h2);
   }
   .artist-details h3 {
-    font-size: 20px;
+    font-size: var(--fs-h3);
   }
   .artist-details p {
-    font-size: 15px;
+    font-size: var(--fs-lead);
+    line-height: var(--lh-lead);
   }
   .top-label {
-    margin-bottom: 30px;
+    margin-bottom: 24px;
   }
 }

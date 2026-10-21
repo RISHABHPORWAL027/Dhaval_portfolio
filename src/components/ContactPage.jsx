@@ -1,22 +1,12 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent, useInView } from 'framer-motion';
-import { TextRotate } from './ui/text-rotate';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import './ContactPage.css';
 import TypewriterText from './TypewriterText';
-import MagneticButton from './MagneticButton';
 import contactusBgVideo from '../assets/contactus_bg.mp4';
-import allbyplayVideo from '../assets/allbyplay_instagram.mp4';
 import enquiriesVideo from '../assets/Video-85335.mp4';
-import screenBg from '../assets/screen.png';
-import contactBg from '../assets/contact_bg.png';
+import contactBg from '../assets/contact_bg.webp';
 import mixTabGif from '../assets/mix_tab.gif';
-import mumbaiMapImg from '../assets/mumbai_map_graphic.jpg';
-
-const questOptions = [
-  { id: 'founder', title: 'FOUNDER VENTURES', icon: '💼', desc: 'Strategy, creative business & partnerships' },
-  { id: 'artist', title: 'ARTIST BOOKINGS', icon: '🎤', desc: 'Live shows, music releases & media support' },
-  { id: 'marketing', title: '360° MARKETING', icon: '⚡', desc: 'Full-suite campaign & ecosystem growth' }
-];
+import mumbaiMapImg from '../assets/mumbai_map_graphic.webp';
 
 const pathOptions = [
   {
@@ -33,12 +23,6 @@ const pathOptions = [
     actionText: 'START AN ARTIST CONVERSATION',
     modalType: 'Artist Bookings'
   }
-];
-
-const budgetTiers = [
-  { label: 'EMERGING', xp: '85% Synergy', detail: 'Single release & launch strategy' },
-  { label: 'BREAKTHROUGH', xp: '94% Synergy', detail: 'EP / Album & 360° campaign' },
-  { label: 'HEADLINE / ENTERPRISE', xp: '99% Synergy', detail: 'Long-term partnership & label development' }
 ];
 
 const strategyPhrases = [
@@ -100,6 +84,7 @@ function EnquiriesSection({ openContactModal }) {
                 loop
                 muted
                 playsInline
+                preload="metadata"
                 className="cp-enquiries-video"
               />
             </div>
@@ -115,9 +100,6 @@ const ContactPage = () => {
   // Strategy Banner horizontal autoscroll index
   const [activeStrategyIndex, setActiveStrategyIndex] = useState(0);
 
-  // Gamification state
-  const [selectedQuest, setSelectedQuest] = useState('founder');
-  const [selectedBudget, setSelectedBudget] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState('Founder Collaboration');
   const [toastMessage, setToastMessage] = useState('');
@@ -226,6 +208,7 @@ const ContactPage = () => {
           loop 
           muted 
           playsInline
+          preload="metadata"
           className="cp-hero-full-bg-video"
         />
 
@@ -451,6 +434,8 @@ const ContactPage = () => {
                   src={mumbaiMapImg}
                   alt="Mumbai Andheri West Graphic Location Map"
                   className="cp-custom-map-image"
+                  loading="lazy"
+                  decoding="async"
                 />
 
                 {/* Radar Grid & Crosshair Lines Overlay */}
