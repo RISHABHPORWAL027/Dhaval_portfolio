@@ -146,8 +146,8 @@ const FounderPage = () => {
               <div className="fp-origin-placeholder">
                 <iframe
                   className="fp-origin-iframe"
-                  src="https://www.youtube-nocookie.com/embed/MQjEvlwsv9M?autoplay=1&mute=1&loop=1&playlist=MQjEvlwsv9M&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&playsinline=1"
-                  title="Unchi Talavadi | Dhaval Kothari"
+                  src="https://www.youtube-nocookie.com/embed/CdTs7OTDo-4?autoplay=1&mute=1&loop=1&playlist=CdTs7OTDo-4&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&playsinline=1"
+                  title="Jaagi Jaagi | Dhaval Kothari"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                 />

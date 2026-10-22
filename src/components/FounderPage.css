@@ -106,6 +106,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: -65px;
 }
 
 @keyframes floatLogo {
@@ -678,6 +679,9 @@
     text-align: center;
     gap: 30px;
   }
+  .fp-hero-right {
+    margin-top: 0;
+  }
   .fp-hero-subtitle-wrapper {
     align-items: center;
   }
@@ -749,6 +753,7 @@
   }
   .fp-hero-right {
     margin-left: 0;
+    margin-top: 0;
     width: 100%;
   }
   .fp-logo-img {

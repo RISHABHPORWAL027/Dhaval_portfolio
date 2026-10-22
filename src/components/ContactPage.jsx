@@ -310,7 +310,7 @@ const ContactPage = () => {
           </div>
 
           <div className="cp-direct-main">
-            <h2 className="cp-direct-title-exact hover-turn-red">
+            <h2 className="cp-direct-title-exact">
               <TypewriterText text={"PREFER EMAIL\nOR A CALL?"} stagger={0.09} />
             </h2>
 
@@ -405,7 +405,7 @@ const ContactPage = () => {
                 <span className="red-text font-space bold-tag-num">04</span> <span className="black-tag-text">/ CONTEXT</span>
               </span>
 
-              <h2 className="cp-context-title hover-turn-red">
+              <h2 className="cp-context-title">
                 <TypewriterText text={"BASED IN INDIA.\nWORKING ACROSS\nMUSIC AND\nBUSINESS."} stagger={0.09} />
               </h2>
 
@@ -428,7 +428,7 @@ const ContactPage = () => {
 
             {/* Right Column: Live Interactive Google Map Box with Animated Location Pin */}
             <div className="cp-context-right">
-              <div className="cp-target-radar-box hover-glow-red">
+              <div className="cp-target-radar-box">
                 {/* Custom Graphic Map Aligned with Design Aesthetic */}
                 <img
                   src={mumbaiMapImg}

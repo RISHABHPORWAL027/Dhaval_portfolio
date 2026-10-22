@@ -2,8 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  height: 64px;
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
@@ -12,21 +11,23 @@
 .navbar-logo {
   font-weight: 800;
   letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
 }
 
 .navbar-logo a {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
   transition: opacity 0.2s ease, color 0.2s ease;
   text-decoration: none;
 }
 
 .navbar-logo-img {
-  height: 38px;
+  height: 48px;
   width: auto;
   object-fit: contain;
   display: block;
+  margin-top: 10px;
   transition: transform 0.25s ease;
   filter: brightness(0);
 }
@@ -36,10 +37,7 @@
 }
 
 .navbar-logo-text {
-  display: inline-block;
-  padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
-  transition: border-bottom 0.2s ease;
+  display: none;
 }
 
 .navbar-logo a.active .navbar-logo-text {
@@ -121,12 +119,12 @@
   .navbar {
     position: relative;
     flex-direction: row; 
-    padding-top: 20px;
-    padding-bottom: 20px;
+    height: 52px;
   }
   
   .navbar-logo-img {
-    height: 30px;
+    height: 32px;
+    margin-top: 6px;
   }
   
   .mobile-menu-btn {
@@ -135,6 +133,9 @@
     justify-content: center;
     position: relative;
     z-index: 101;
+    height: 36px;
+    width: 36px;
+    padding: 0;
   }
 
   .navbar-links {

@@ -78,7 +78,7 @@
   gap: clamp(20px, 2.5vw, 28px);
 }
 
-.ap-section-heading {
+.abp-reel-wrapper .ap-section-heading {
   font-family: var(--font-space);
   font-size: var(--fs-h2);
   font-weight: 700;

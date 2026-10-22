@@ -25,18 +25,6 @@ const tracks = [
   {
     id: 2,
     num: '02',
-    title: 'SAAJE SAAJE',
-    subtitle: 'Dhaval Kothari • Gujarati Indie Pop',
-    duration: '2:58',
-    totalSeconds: 178,
-    tag: 'ROMANTIC POP',
-    videoId: '97uWy2LJHwI',
-    link: 'https://youtu.be/97uWy2LJHwI?si=QOwHSKHktzehxGKS',
-    img: 'https://img.youtube.com/vi/97uWy2LJHwI/hqdefault.jpg',
-  },
-  {
-    id: 3,
-    num: '03',
     title: 'KON HALAVE LIMBDI',
     subtitle: 'Dhaval Kothari • Gujarati Indie Pop',
     duration: '3:18',
@@ -47,8 +35,8 @@ const tracks = [
     img: 'https://img.youtube.com/vi/GNVsGuHB0cg/hqdefault.jpg',
   },
   {
-    id: 4,
-    num: '04',
+    id: 3,
+    num: '03',
     title: 'UNCHI TALAVADI',
     subtitle: 'Dhaval Kothari • Global Folktales Release',
     duration: '3:39',
@@ -133,7 +121,7 @@ const ArtistPage = () => {
           </div>
           <div className="ap-roots-grid">
             <div className="ap-roots-left">
-              <h2 className="ap-section-heading">
+              <h2 className="ap-section-heading black-text">
                 <TypewriterText text={"TAKING GUJARATI\nINDIE POP GLOBAL."} />
               </h2>
             </div>
@@ -215,13 +203,22 @@ const ArtistPage = () => {
         </div>
         <div className="ap-live-header">
           <div className="ap-live-title-col">
-            <h2 className="ap-section-heading">
-              <TypewriterText text={"FOLKTALES SERIES\nLIVE SET"} />
+            <h2 className="ap-section-heading black-text">
+              <TypewriterText text={"FROM GUJARAT\nTO THE WORLD."} />
             </h2>
           </div>
           <div className="ap-live-desc-col">
             <p>
-              Recorded live with a full acoustic and electric band. A 30-minute set capturing the raw energy of Gujarati Indie Pop and the Folktales IP, celebrated by diaspora audiences from India to the USA, UK, and Canada.
+              One language. A sound that travels beyond borders.
+            </p>
+            <p>
+              Through Folktales, Dhaval Kothari is bringing Gujarati Indie Pop to audiences across India and the global Gujarati diaspora.
+            </p>
+            <p className="ap-live-route">
+              <strong>INDIA &rarr; USA &rarr; UK &rarr; CANADA</strong>
+            </p>
+            <p>
+              Rooted in Gujarat. Heard around the world.
             </p>
           </div>
         </div>
@@ -297,7 +294,7 @@ const ArtistPage = () => {
           </div>
           <div className="ap-identity-grid">
             <div className="ap-identity-left">
-              <h2 className="ap-section-heading">
+              <h2 className="ap-section-heading black-text">
                 <TypewriterText text={"MEWATI GHARANA.\nCONTEMPORARY SOUND."} />
               </h2>
             </div>

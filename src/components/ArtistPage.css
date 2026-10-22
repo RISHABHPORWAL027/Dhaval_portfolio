@@ -224,6 +224,14 @@
   overflow-wrap: normal;
 }
 
+.ap-section-heading:not(.white-text),
+.ap-roots .ap-section-heading,
+.ap-live .ap-section-heading,
+.ap-identity .ap-section-heading,
+.black-text {
+  color: #050505 !important;
+}
+
 .ap-brochure-btn-wrap {
   margin-top: clamp(28px, 3.5vw, 44px);
   display: flex;
@@ -491,12 +499,23 @@
 
 .ap-live-desc-col {
   flex: 0.9;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .ap-live-desc-col p {
   font-size: clamp(15px, 1.4vw, 18px);
   line-height: 1.6;
   color: #444;
+  margin: 0;
+}
+
+.ap-live-route strong {
+  font-family: var(--font-space);
+  font-weight: 700;
+  color: #050505;
+  letter-spacing: 0.5px;
 }
 
 .ap-video-container {

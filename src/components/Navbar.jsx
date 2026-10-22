@@ -35,6 +35,7 @@ const Navbar = () => {
       <div className="navbar-logo">
         <a 
           href="#" 
+          aria-label="Dhaval Kothari"
           className={activeHash === '' || activeHash === '#' || activeHash === '#home' || activeHash === '#about' ? 'active' : ''}
         >
           <img 
