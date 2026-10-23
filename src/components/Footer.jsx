@@ -62,7 +62,7 @@ const Footer = ({ hideCta = false }) => {
               />
               <span className="footer-logo-text">DHAVAL KOTHARI</span>
             </a>
-            <span className="copyright">© 2023 All rights reserved</span>
+            <span className="copyright">© 2026 All rights reserved</span>
             <div className="footer-social-icons">
               <a 
                 href="https://www.linkedin.com/in/dhaval-kothari-07ab73ba/" 
