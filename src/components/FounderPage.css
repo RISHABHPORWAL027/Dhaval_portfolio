@@ -115,12 +115,24 @@
   100% { transform: translateY(0px); }
 }
 
-.fp-logo-img {
+.fp-logo-circle {
   width: clamp(180px, 22vw, 280px);
   height: clamp(180px, 22vw, 280px);
-  object-fit: contain;
   border-radius: 50%;
+  overflow: hidden;
   animation: floatLogo 4s ease-in-out infinite;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fp-logo-img {
+  width: 115%;
+  height: 115%;
+  object-fit: cover;
+  object-position: 55% 50%;
+  flex-shrink: 0;
 }
 
 /* Goals Section */
@@ -756,7 +768,7 @@
     margin-top: 0;
     width: 100%;
   }
-  .fp-logo-img {
+  .fp-logo-circle {
     width: 180px;
     height: 180px;
   }

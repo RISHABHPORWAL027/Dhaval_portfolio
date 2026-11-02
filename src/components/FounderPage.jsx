@@ -96,7 +96,9 @@ const FounderPage = () => {
           </div>
         </div>
         <div className="fp-hero-right" style={{ position: 'relative', zIndex: 1 }}>
-          <img src={abpLogo} alt="All By Play Logo" className="fp-logo-img" />
+          <div className="fp-logo-circle">
+            <img src={abpLogo} alt="All By Play Logo" className="fp-logo-img" />
+          </div>
         </div>
       </section>
       </div>
