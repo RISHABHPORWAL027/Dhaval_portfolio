@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './MusicPlayer.css';
 
@@ -52,11 +52,37 @@ const MusicPlayer = ({ tracks = defaultTracks }) => {
   const iframeRef = useRef(null);
   const currentTrack = tracks[currentIdx] || tracks[0];
 
+  const sendIframeCommand = useCallback((func, args = []) => {
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      iframeRef.current.contentWindow.postMessage(
+        JSON.stringify({ event: 'command', func, args }),
+        '*'
+      );
+    }
+  }, []);
+
   const toggleMute = () => {
     const nextMute = !isMuted;
     setIsMuted(nextMute);
     sendIframeCommand(nextMute ? 'mute' : 'unMute');
   };
+
+  const handleNext = useCallback(() => {
+    setCurrentIdx((prevIdx) => {
+      if (isShuffle) {
+        return Math.floor(Math.random() * tracks.length);
+      }
+      return (prevIdx + 1) % tracks.length;
+    });
+    setCurrentSeconds(0);
+    setIsPlaying(true);
+  }, [isShuffle, tracks.length]);
+
+  const handlePrev = useCallback(() => {
+    setCurrentIdx((prevIdx) => (prevIdx === 0 ? tracks.length - 1 : prevIdx - 1));
+    setCurrentSeconds(0);
+    setIsPlaying(true);
+  }, [tracks.length]);
 
   // Synchronize timer with active video playback
   useEffect(() => {
@@ -76,7 +102,7 @@ const MusicPlayer = ({ tracks = defaultTracks }) => {
     return () => {
       if (timer) clearInterval(timer);
     };
-  }, [isPlaying, currentIdx, isRepeat]);
+  }, [isPlaying, currentTrack.totalSeconds, isRepeat, handleNext]);
 
   // Listen to postMessages from YouTube IFrame
   useEffect(() => {
@@ -94,23 +120,14 @@ const MusicPlayer = ({ tracks = defaultTracks }) => {
             handleNext();
           }
         }
-      } catch (e) {
+      } catch {
         // Ignore non-JSON messages
       }
     };
 
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
-  }, [currentIdx]);
-
-  const sendIframeCommand = (func, args = []) => {
-    if (iframeRef.current && iframeRef.current.contentWindow) {
-      iframeRef.current.contentWindow.postMessage(
-        JSON.stringify({ event: 'command', func, args }),
-        '*'
-      );
-    }
-  };
+  }, [handleNext]);
 
   const formatTime = (secs) => {
     const mins = Math.floor(secs / 60);
@@ -142,23 +159,6 @@ const MusicPlayer = ({ tracks = defaultTracks }) => {
       sendIframeCommand('playVideo');
       setIsPlaying(true);
     }
-  };
-
-  const handlePrev = () => {
-    const prevIdx = currentIdx === 0 ? tracks.length - 1 : currentIdx - 1;
-    setCurrentIdx(prevIdx);
-    setCurrentSeconds(0);
-    setIsPlaying(true);
-  };
-
-  const handleNext = () => {
-    let nextIdx = (currentIdx + 1) % tracks.length;
-    if (isShuffle) {
-      nextIdx = Math.floor(Math.random() * tracks.length);
-    }
-    setCurrentIdx(nextIdx);
-    setCurrentSeconds(0);
-    setIsPlaying(true);
   };
 
   const handleSelectTrack = (index) => {

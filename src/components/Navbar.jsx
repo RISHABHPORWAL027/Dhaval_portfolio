@@ -3,13 +3,10 @@ import './Navbar.css';
 import { prefetchRoute } from '../lib/prefetch';
 
 const Navbar = () => {
-  const [activeHash, setActiveHash] = useState('');
+  const [activeHash, setActiveHash] = useState(() => (typeof window !== 'undefined' ? window.location.hash || '' : ''));
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Set initial hash
-    setActiveHash(window.location.hash || '');
-
     const handleHashChange = () => {
       setActiveHash(window.location.hash);
       setIsMenuOpen(false); // Close menu on navigation

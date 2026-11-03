@@ -3,9 +3,11 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import './ContactPage.css';
 import TypewriterText from './TypewriterText';
 import contactusBgVideo from '../assets/contactus_bg.mp4';
+import contactusBgPoster from '../assets/contactus_bg_poster.webp';
 import enquiriesVideo from '../assets/Video-85335.mp4';
+import enquiriesPoster from '../assets/enquiries_poster.webp';
 import contactBg from '../assets/contact_bg.webp';
-import mixTabGif from '../assets/mix_tab.gif';
+import mixTabWebp from '../assets/mix_tab.webp';
 import mumbaiMapImg from '../assets/mumbai_map_graphic.webp';
 
 const pathOptions = [
@@ -85,6 +87,7 @@ function EnquiriesSection({ openContactModal }) {
                 muted
                 playsInline
                 preload="metadata"
+                poster={enquiriesPoster}
                 className="cp-enquiries-video"
               />
             </div>
@@ -209,6 +212,7 @@ const ContactPage = () => {
           muted 
           playsInline
           preload="metadata"
+          poster={contactusBgPoster}
           className="cp-hero-full-bg-video"
         />
 
@@ -252,7 +256,7 @@ const ContactPage = () => {
         <section 
           className="cp-abp-fullwidth-card hover-glow-red"
           style={{
-            backgroundImage: `linear-gradient(rgba(10, 10, 10, 0.70), rgba(10, 10, 10, 0.85)), url(${mixTabGif})`,
+            backgroundImage: `linear-gradient(rgba(10, 10, 10, 0.70), rgba(10, 10, 10, 0.85)), url(${mixTabWebp})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             width: '100%'

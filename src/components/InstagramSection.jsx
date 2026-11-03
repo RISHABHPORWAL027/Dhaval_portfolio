@@ -4,6 +4,7 @@ import './InstagramSection.css';
 import TypewriterText from './TypewriterText';
 import MagneticButton from './MagneticButton';
 import instagramVideo from '../assets/instagram.mp4';
+import instagramPoster from '../assets/instagram_poster.webp';
 
 const highlightCardsData = [
   {
@@ -233,6 +234,7 @@ const InstagramSection = () => {
                     muted={isMuted}
                     playsInline
                     preload="none"
+                    poster={instagramPoster}
                   >
                     {shouldLoadVideo && (
                       <source src={instagramVideo} type="video/mp4" />

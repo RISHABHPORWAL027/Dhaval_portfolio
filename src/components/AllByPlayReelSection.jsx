@@ -4,6 +4,7 @@ import './AllByPlayReelSection.css';
 import TypewriterText from './TypewriterText';
 import MagneticButton from './MagneticButton';
 import allbyplayVideo from '../assets/allbyplay_instagram.mp4';
+import allbyplayPoster from '../assets/allbyplay_poster.webp';
 
 const abpHighlightCards = [
   {
@@ -232,6 +233,7 @@ const AllByPlayReelSection = () => {
                     muted={isMuted}
                     playsInline
                     preload="none"
+                    poster={allbyplayPoster}
                   >
                     {shouldLoadVideo && (
                       <source src={allbyplayVideo} type="video/mp4" />

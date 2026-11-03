@@ -25,7 +25,9 @@ const TypewriterText = ({ text, className, loop = false, speed = 120, delay = 20
         setDisplayedText(fullText.substring(0, displayedText.length - 1));
       }, speed / 2);
     } else if (isDeleting && displayedText.length === 0) {
-      setIsDeleting(false);
+      timer = setTimeout(() => {
+        setIsDeleting(false);
+      }, speed);
     }
 
     return () => clearTimeout(timer);

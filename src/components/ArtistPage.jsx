@@ -7,7 +7,8 @@ import MagneticButton from './MagneticButton';
 import MusicPlayer from './MusicPlayer';
 import WaterTextPillars from './WaterTextPillars';
 import heroBgVideo from '../assets/herosection_bg.mp4';
-import bgTabGif from '../assets/bg_tab.gif';
+import heroBgPoster from '../assets/herosection_bg_poster.webp';
+import bgTabWebp from '../assets/bg_tab.webp';
 
 const tracks = [
   {
@@ -61,6 +62,7 @@ const ArtistPage = () => {
           muted
           playsInline
           preload="metadata"
+          poster={heroBgPoster}
         >
           <source src={heroBgVideo} type="video/mp4" />
         </video>
@@ -166,11 +168,13 @@ const ArtistPage = () => {
         <div className="container ap-subbanner-container">
           <div className="ap-subbanner-media">
             <img 
-              src={bgTabGif} 
+              src={bgTabWebp} 
               alt="Creating and Sharing Music Since 2014" 
               className="ap-subbanner-gif" 
               loading="lazy" 
               decoding="async" 
+              width="120"
+              height="120"
             />
           </div>
           <h2 className="ap-subbanner-text">
