@@ -1059,6 +1059,35 @@
   max-width: 100%;
 }
 
+.cp-direct-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(24px, 4vw, 60px);
+  margin-bottom: 20px;
+}
+
+.cp-direct-header-left {
+  flex: 1;
+}
+
+.cp-direct-guitar-container {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: clamp(10px, 4vw, 50px);
+}
+
+.cp-direct-guitar-img {
+  width: clamp(160px, 20vw, 280px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.08));
+  user-select: none;
+  pointer-events: none;
+}
+
 .cp-direct-title-exact {
   font-size: clamp(2.6rem, 4.5vw, 3.6rem);
   font-weight: 900;
@@ -2073,6 +2102,23 @@
     margin-bottom: 30px;
     flex-wrap: wrap;
     gap: 12px;
+  }
+
+  .cp-direct-header-row {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .cp-direct-guitar-container {
+    padding-right: 0;
+    margin-top: 5px;
+  }
+
+  .cp-direct-guitar-img {
+    width: clamp(90px, 24vw, 130px);
   }
 
   .cp-direct-title-exact {

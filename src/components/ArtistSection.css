@@ -16,39 +16,176 @@
   justify-content: space-between;
 }
 
-.artist-image-container {
+.artist-carousel-wrapper {
   flex: 1;
-  position: relative;
   max-width: clamp(280px, 36vw, 540px);
+  width: 100%;
+}
+
+.artist-image-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
-  display: block; /* Since it's now an <a> tag */
+  display: block;
+  background: #111111;
+  user-select: none;
+  isolation: isolate;
+  border-radius: 4px;
+}
+
+.artist-slide-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
   cursor: pointer;
+}
+
+.artist-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+.artist-slide:active {
+  cursor: grabbing;
 }
 
 .artist-image {
   width: 100%;
-  height: auto;
+  height: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
+  pointer-events: none;
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.artist-image-container:hover .artist-image {
-  transform: scale(1.05);
+.artist-carousel-wrapper:hover .artist-image {
+  transform: scale(1.04);
 }
 
 .red-overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(230, 0, 0, 0.4);
+  background-color: rgba(250, 104, 25, 0.35);
   mix-blend-mode: color;
   pointer-events: none;
   transition: opacity 0.4s ease;
+  z-index: 2;
 }
 
-.artist-image-container:hover .red-overlay {
+.artist-carousel-wrapper:hover .red-overlay {
   opacity: 0; /* Reveal original image colors on hover */
+}
+
+/* Slide Counter Badge */
+.artist-carousel-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 5;
+  background: rgba(10, 10, 10, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-family: var(--font-space);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  pointer-events: none;
+}
+
+.artist-carousel-badge .badge-active {
+  color: var(--color-red);
+}
+
+.artist-carousel-badge .badge-divider {
+  opacity: 0.4;
+}
+
+.artist-carousel-badge .badge-total {
+  opacity: 0.7;
+}
+
+/* Dots Navigation */
+.artist-carousel-dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 6;
+}
+
+.artist-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.artist-dot.active {
+  background: var(--color-red);
+  width: 22px;
+  border-radius: 10px;
+}
+
+/* Navigation Arrow Controls */
+.artist-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 6;
+  opacity: 0;
+  transition: opacity 0.3s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.artist-carousel-wrapper:hover .artist-carousel-arrow {
+  opacity: 1;
+}
+
+.artist-carousel-arrow.prev {
+  left: 14px;
+}
+
+.artist-carousel-arrow.next {
+  right: 14px;
+}
+
+.artist-carousel-arrow:hover {
+  background: var(--color-red);
+  border-color: var(--color-red);
+  transform: translateY(-50%) scale(1.08);
 }
 
 .artist-content {
@@ -167,9 +304,12 @@
     flex-direction: column;
     gap: 48px;
   }
-  .artist-image-container {
+  .artist-carousel-wrapper {
     max-width: clamp(280px, 50vw, 420px);
     margin: 0 auto;
+  }
+  .artist-carousel-arrow {
+    opacity: 0.85; /* Accessible for touch users */
   }
   .artist-reveal-heading {
     font-size: var(--fs-h2);
@@ -185,8 +325,13 @@
   .artist-content {
     padding-left: 0;
   }
-  .artist-image-container {
-    max-width: min(280px, 75vw);
+  .artist-carousel-wrapper {
+    max-width: min(320px, 85vw);
+  }
+  .artist-carousel-arrow {
+    width: 32px;
+    height: 32px;
+    opacity: 0.9;
   }
   .artist-reveal-heading {
     font-size: var(--fs-h2);

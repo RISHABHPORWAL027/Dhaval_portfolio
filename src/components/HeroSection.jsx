@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import './HeroSection.css';
-import founderImage from '../assets/founder_image.webp'; // Optimized 50KB WebP
 import TypewriterText from './TypewriterText';
 import MagneticButton from './MagneticButton';
 
@@ -54,13 +53,13 @@ const HeroSection = () => {
       <div className="hero-image-container">
         <div className="hero-image-inner">
           <img 
-            src={founderImage} 
+            src="/founder/dhaval-4.jpg" 
             alt="Dhaval Kothari - Founder & Gujarati Indie Pop Artist" 
             className="hero-image"
             fetchPriority="high"
             decoding="async"
-            width="868"
-            height="914"
+            width="662"
+            height="992"
           />
         </div>
       </div>

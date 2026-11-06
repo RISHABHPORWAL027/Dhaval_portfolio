@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import './FounderPage.css';
 import abpLogo from '../assets/ABP_logo.png';
+import founderBgVideo from '../assets/founder-talk-clip.mp4';
 import FounderCarousel from './FounderCarousel';
 import AnimatedCounter from './AnimatedCounter';
 import TypewriterText from './TypewriterText';
@@ -54,6 +55,19 @@ const FounderPage = () => {
     <div className="founder-page">
       {/* Section 1 */}
       <div className="fp-hero-wrapper">
+        {/* Background Video */}
+        <video
+          key={founderBgVideo}
+          src={founderBgVideo}
+          className="fp-hero-bg-video"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+        />
+        <div className="fp-hero-video-overlay"></div>
+
         {/* Background Floating Snake Lines - Full Width */}
         <div className="hero-bg-snake">
           <svg width="100%" height="400" viewBox="0 0 2000 400" preserveAspectRatio="none">
@@ -91,7 +105,7 @@ const FounderPage = () => {
             <span className="fp-badge">ABOUT FOUNDER</span>
             <div className="fp-hero-subtitle">
               <p style={{marginBottom: '20px'}}>Dhaval Kothari on building All By Play in 2021</p>
-              <MagneticButton text="Read the full story" href="#" />
+              <MagneticButton text="Read the full story" href="#" lightTheme={true} />
             </div>
           </div>
         </div>

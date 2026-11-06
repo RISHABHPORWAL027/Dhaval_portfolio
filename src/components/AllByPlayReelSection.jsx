@@ -184,7 +184,7 @@ const AllByPlayReelSection = () => {
               </div>
             </div>
 
-            <div className="ap-insta-cta">
+            <div className="ap-insta-cta abp-reel-cta">
               <MagneticButton
                 text="Follow @allbyplay"
                 href="https://www.instagram.com/allbyplay/?hl=en"

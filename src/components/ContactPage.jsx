@@ -9,6 +9,7 @@ import enquiriesPoster from '../assets/enquiries_poster.webp';
 import contactBg from '../assets/contact_bg.webp';
 import mixTabWebp from '../assets/mix_tab.webp';
 import mumbaiMapImg from '../assets/mumbai_map_graphic.webp';
+import guitarSvg from '../assets/guirtar.svg';
 
 const pathOptions = [
   {
@@ -314,16 +315,36 @@ const ContactPage = () => {
           </div>
 
           <div className="cp-direct-main">
-            <h2 className="cp-direct-title-exact">
-              <TypewriterText text={"PREFER EMAIL\nOR A CALL?"} stagger={0.09} />
-            </h2>
+            <div className="cp-direct-header-row">
+              <div className="cp-direct-header-left">
+                <h2 className="cp-direct-title-exact">
+                  <TypewriterText text={"PREFER EMAIL\nOR A CALL?"} stagger={0.09} />
+                </h2>
 
-            <div className="cp-red-accent-box">
-              <div className="red-vertical-line"></div>
-              <div className="accent-text-group">
-                <span className="accent-title font-space">ALL BY PLAY</span>
-                <span className="accent-subtitle">360-degree music marketing</span>
+                <div className="cp-red-accent-box">
+                  <div className="red-vertical-line"></div>
+                  <div className="accent-text-group">
+                    <span className="accent-title font-space">ALL BY PLAY</span>
+                    <span className="accent-subtitle">360-degree music marketing</span>
+                  </div>
+                </div>
               </div>
+
+              <motion.div 
+                className="cp-direct-guitar-container"
+                initial={{ opacity: 0, scale: 0.85, rotate: -4 }}
+                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+              >
+                <motion.img 
+                  src={guitarSvg} 
+                  alt="Guitar illustration" 
+                  className="cp-direct-guitar-img"
+                  animate={{ y: [0, -8, 0], rotate: [0, 2, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                />
+              </motion.div>
             </div>
 
             <div className="cp-contact-rows-list" ref={contactListRef}>

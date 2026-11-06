@@ -210,7 +210,8 @@
   100% { width: 100%; }
 }
 
-.ap-insta-cta {
+.ap-insta-cta,
+.abp-reel-cta {
   margin-top: 4px;
 }
 
@@ -395,6 +396,7 @@
     gap: 40px;
   }
   
+  .abp-reel-wrapper .ap-insta-left,
   .ap-insta-left {
     width: 100%;
     flex: none;
@@ -402,31 +404,47 @@
     text-align: center;
   }
 
+  .abp-reel-wrapper .ap-section-heading,
   .ap-section-heading {
     text-align: center;
   }
 
+  .abp-reel-wrapper .ap-insta-desc,
   .ap-insta-desc {
     text-align: center;
     margin: 0 auto;
   }
 
+  .abp-reel-wrapper .ap-single-card-container,
   .ap-single-card-container {
     align-items: center;
     text-align: center;
   }
 
+  .abp-reel-wrapper .ap-single-card-header,
   .ap-single-card-header {
     justify-content: center;
   }
 
+  .abp-reel-wrapper .ap-single-pills,
   .ap-single-pills {
     justify-content: center;
   }
 
+  .abp-reel-wrapper .ap-insta-cta,
+  .abp-reel-cta,
   .ap-insta-cta {
+    width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .abp-reel-wrapper .ap-insta-cta .magnetic-btn,
+  .abp-reel-cta .magnetic-btn,
+  .ap-insta-cta .magnetic-btn {
+    margin: 0 auto;
   }
 
   .ap-insta-right {
@@ -464,6 +482,22 @@
 
   .ap-single-desc {
     font-size: var(--fs-body);
+  }
+
+  .abp-reel-wrapper .ap-insta-cta,
+  .abp-reel-cta,
+  .ap-insta-cta {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .abp-reel-wrapper .ap-insta-cta .magnetic-btn,
+  .abp-reel-cta .magnetic-btn,
+  .ap-insta-cta .magnetic-btn {
+    margin: 0 auto;
   }
 
   .ap-phone-container {

@@ -423,9 +423,18 @@
     justify-content: center;
   }
 
+  .ap-instagram-wrapper .ap-insta-cta,
   .ap-insta-cta {
+    width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .ap-instagram-wrapper .ap-insta-cta .magnetic-btn,
+  .ap-insta-cta .magnetic-btn {
+    margin: 0 auto;
   }
 
   .ap-insta-right {
@@ -461,6 +470,20 @@
 
   .ap-single-desc {
     font-size: var(--fs-body);
+  }
+
+  .ap-instagram-wrapper .ap-insta-cta,
+  .ap-insta-cta {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .ap-instagram-wrapper .ap-insta-cta .magnetic-btn,
+  .ap-insta-cta .magnetic-btn {
+    margin: 0 auto;
   }
 
   .ap-phone-container {

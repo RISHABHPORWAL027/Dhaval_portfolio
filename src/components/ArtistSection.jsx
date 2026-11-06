@@ -1,11 +1,113 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import './ArtistSection.css';
 import dhavalMusicImg from '../assets/dhaval_music.webp';
 import MagneticButton from './MagneticButton';
 
+const artistImages = [
+  {
+    src: dhavalMusicImg,
+    alt: 'Gujarati Pop Artist Dhaval Kothari - Live Folktale Series',
+    position: 'center 20%',
+  },
+  {
+    src: '/founder/dhaval-7.jpg',
+    alt: 'Gujarati Pop Artist Dhaval Kothari - Spotlight',
+    position: 'center 25%',
+  },
+  {
+    src: '/founder/dhaval-new.png',
+    alt: 'Gujarati Pop Artist Dhaval Kothari - Contemporary Pop',
+    position: 'center 35%',
+  },
+];
+
+const slideVariants = {
+  enter: (direction) => ({
+    x: direction > 0 ? '100%' : '-100%',
+    opacity: 0,
+    scale: 0.98,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+    transition: {
+      x: { type: 'spring', stiffness: 280, damping: 30 },
+      opacity: { duration: 0.4 },
+      scale: { duration: 0.4 },
+    },
+  },
+  exit: (direction) => ({
+    x: direction > 0 ? '-100%' : '100%',
+    opacity: 0,
+    scale: 0.98,
+    transition: {
+      x: { type: 'spring', stiffness: 280, damping: 30 },
+      opacity: { duration: 0.4 },
+      scale: { duration: 0.4 },
+    },
+  }),
+};
+
+const swipeConfidenceThreshold = 10000;
+const swipePower = (offset, velocity) => Math.abs(offset) * velocity;
+
 const ArtistSection = () => {
   const headingRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Preload images for instantaneous transitions
+  useEffect(() => {
+    artistImages.forEach((item) => {
+      const img = new Image();
+      img.src = item.src;
+    });
+  }, []);
+
+  const paginate = useCallback(
+    (newDirection) => {
+      setDirection(newDirection);
+      setCurrentIndex((prev) => {
+        let nextIndex = prev + newDirection;
+        if (nextIndex >= artistImages.length) {
+          nextIndex = 0;
+        } else if (nextIndex < 0) {
+          nextIndex = artistImages.length - 1;
+        }
+        return nextIndex;
+      });
+    },
+    []
+  );
+
+  const goToSlide = (idx) => {
+    if (idx === currentIndex) return;
+    setDirection(idx > currentIndex ? 1 : -1);
+    setCurrentIndex(idx);
+  };
+
+  const handleDragEnd = (e, { offset, velocity }) => {
+    const swipe = swipePower(offset.x, velocity.x);
+    if (swipe < -swipeConfidenceThreshold) {
+      paginate(1);
+    } else if (swipe > swipeConfidenceThreshold) {
+      paginate(-1);
+    }
+  };
+
+  // Auto sliding carousel (every 3.6s, paused on hover)
+  useEffect(() => {
+    if (isPaused) return;
+
+    const timer = setInterval(() => {
+      paginate(1);
+    }, 3600);
+
+    return () => clearInterval(timer);
+  }, [currentIndex, isPaused, paginate]);
 
   const { scrollYProgress } = useScroll({
     target: headingRef,
@@ -31,18 +133,97 @@ const ArtistSection = () => {
         </div>
         
         <div className="artist-container">
-          <a href="#artist" className="artist-image-container">
-            <img 
-              src={dhavalMusicImg} 
-              alt="Gujarati Pop Artist Dhaval Kothari" 
-              className="artist-image"
-              loading="lazy"
-              decoding="async"
-              width="454"
-              height="792"
-            />
-            <div className="red-overlay"></div>
-          </a>
+          <div 
+            className="artist-carousel-wrapper"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            <div className="artist-image-container">
+              <a href="#artist" className="artist-slide-link" aria-label="View artist gallery and profile">
+                <AnimatePresence initial={false} custom={direction} mode="popLayout">
+                  <motion.div
+                    key={currentIndex}
+                    custom={direction}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.8}
+                    onDragEnd={handleDragEnd}
+                    className="artist-slide"
+                  >
+                    <img 
+                      src={artistImages[currentIndex].src} 
+                      alt={artistImages[currentIndex].alt} 
+                      className="artist-image"
+                      style={{ objectPosition: artistImages[currentIndex].position }}
+                      loading="lazy"
+                      decoding="async"
+                      width="454"
+                      height="454"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+                <div className="red-overlay"></div>
+              </a>
+
+              {/* Slide Counter Badge */}
+              <div className="artist-carousel-badge">
+                <span className="badge-active">0{currentIndex + 1}</span>
+                <span className="badge-divider">/</span>
+                <span className="badge-total">0{artistImages.length}</span>
+              </div>
+
+              {/* Navigation Arrows */}
+              <button 
+                type="button"
+                className="artist-carousel-arrow prev"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  paginate(-1);
+                }}
+                aria-label="Previous slide"
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+              <button 
+                type="button"
+                className="artist-carousel-arrow next"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  paginate(1);
+                }}
+                aria-label="Next slide"
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+
+              {/* Pagination Dots */}
+              <div className="artist-carousel-dots">
+                {artistImages.map((_, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    className={`artist-dot ${idx === currentIndex ? 'active' : ''}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      goToSlide(idx);
+                    }}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
           
           <div className="artist-content">
             <h2 className="artist-reveal-heading" ref={headingRef}>
