@@ -27,22 +27,164 @@ const turningPointCards = [
 const FounderPage = () => {
   const [activeTpStep, setActiveTpStep] = useState(0);
   const [isTpMuted, setIsTpMuted] = useState(true);
-  const tpIframeRef = useRef(null);
 
-  const toggleTpAudio = () => {
-    if (tpIframeRef.current && tpIframeRef.current.contentWindow) {
-      const nextMuteState = !isTpMuted;
-      setIsTpMuted(nextMuteState);
-      tpIframeRef.current.contentWindow.postMessage(
-        JSON.stringify({
-          event: 'command',
-          func: nextMuteState ? 'mute' : 'unMute',
-          args: []
-        }),
-        '*'
-      );
+  // Video Refs
+  const heroWrapperRef = useRef(null);
+  const heroVideoRef = useRef(null);
+  const isHeroInViewRef = useRef(true);
+
+  const originWrapper1Ref = useRef(null);
+  const originIframe1Ref = useRef(null);
+  const originWrapper2Ref = useRef(null);
+  const originIframe2Ref = useRef(null);
+  const tpWrapperRef = useRef(null);
+  const tpIframeRef = useRef(null);
+  const hugeWrapperRef = useRef(null);
+  const hugeIframeRef = useRef(null);
+
+  const ytVisibilityMapRef = useRef(new Map());
+
+  // Helper to dispatch commands to YouTube iframes via postMessage
+  const sendYtCommand = (iframe, func, args = []) => {
+    try {
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage(
+          JSON.stringify({
+            event: 'command',
+            func,
+            args
+          }),
+          '*'
+        );
+      }
+    } catch {
+      // Ignore cross-origin error
     }
   };
+
+  const toggleTpAudio = () => {
+    const nextMuteState = !isTpMuted;
+    setIsTpMuted(nextMuteState);
+    sendYtCommand(tpIframeRef.current, nextMuteState ? 'mute' : 'unMute');
+    if (!nextMuteState) {
+      sendYtCommand(tpIframeRef.current, 'playVideo');
+    }
+  };
+
+  // Hero background video: Auto-play when in view, pause when scrolled away
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.play().catch(() => {});
+    }
+
+    const heroEl = heroWrapperRef.current;
+    if (!heroEl) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isHeroInViewRef.current = entry.isIntersecting;
+        if (video) {
+          if (entry.isIntersecting) {
+            video.muted = true;
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(heroEl);
+
+    const handleHeroGesture = () => {
+      if (video && isHeroInViewRef.current && video.paused) {
+        video.muted = true;
+        video.play().catch(() => {});
+      }
+    };
+
+    window.addEventListener('scroll', handleHeroGesture, { passive: true });
+    window.addEventListener('touchstart', handleHeroGesture, { passive: true });
+    window.addEventListener('click', handleHeroGesture, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleHeroGesture);
+      window.removeEventListener('touchstart', handleHeroGesture);
+      window.removeEventListener('click', handleHeroGesture);
+    };
+  }, []);
+
+  // YouTube background videos: Play (muted) based on place where user is, pause when scrolled out
+  useEffect(() => {
+    const items = [
+      { wrapper: originWrapper1Ref.current, iframe: originIframe1Ref.current, isMuted: () => true },
+      { wrapper: originWrapper2Ref.current, iframe: originIframe2Ref.current, isMuted: () => true },
+      { wrapper: tpWrapperRef.current, iframe: tpIframeRef.current, isMuted: () => isTpMuted },
+      { wrapper: hugeWrapperRef.current, iframe: hugeIframeRef.current, isMuted: () => true },
+    ];
+
+    const playVideoItem = (iframe, muted) => {
+      if (!iframe) return;
+      sendYtCommand(iframe, muted ? 'mute' : 'unMute');
+      sendYtCommand(iframe, 'playVideo');
+    };
+
+    const pauseVideoItem = (iframe) => {
+      if (!iframe) return;
+      sendYtCommand(iframe, 'pauseVideo');
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const match = items.find((item) => item.wrapper === entry.target);
+          if (!match || !match.iframe) return;
+
+          if (entry.isIntersecting) {
+            ytVisibilityMapRef.current.set(entry.target, true);
+            const muted = match.isMuted();
+            playVideoItem(match.iframe, muted);
+            // Staggered retries in case iframe is still loading YouTube player API
+            setTimeout(() => playVideoItem(match.iframe, muted), 400);
+            setTimeout(() => playVideoItem(match.iframe, muted), 1000);
+          } else {
+            ytVisibilityMapRef.current.set(entry.target, false);
+            pauseVideoItem(match.iframe);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    items.forEach(({ wrapper }) => {
+      if (wrapper) observer.observe(wrapper);
+    });
+
+    // On user scroll / touch / gesture, retry play for whichever iframe is currently visible in viewport
+    const handleYtGesture = () => {
+      items.forEach(({ wrapper, iframe, isMuted }) => {
+        if (wrapper && iframe && ytVisibilityMapRef.current.get(wrapper)) {
+          playVideoItem(iframe, isMuted());
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleYtGesture, { passive: true });
+    window.addEventListener('touchstart', handleYtGesture, { passive: true });
+    window.addEventListener('click', handleYtGesture, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleYtGesture);
+      window.removeEventListener('touchstart', handleYtGesture);
+      window.removeEventListener('click', handleYtGesture);
+    };
+  }, [isTpMuted]);
 
   // Auto progress bar timer cycling every 4 seconds
   useEffect(() => {
@@ -51,18 +193,21 @@ const FounderPage = () => {
     }, 4000);
     return () => clearInterval(tpTimer);
   }, []);
+
   return (
     <div className="founder-page">
       {/* Section 1 */}
-      <div className="fp-hero-wrapper">
+      <div className="fp-hero-wrapper" ref={heroWrapperRef}>
         {/* Background Video */}
         <video
+          ref={heroVideoRef}
           key={founderBgVideo}
           src={founderBgVideo}
           className="fp-hero-bg-video"
           autoPlay
           loop
           muted
+          defaultMuted
           playsInline
           preload="auto"
         />
@@ -159,26 +304,40 @@ const FounderPage = () => {
                   <TypewriterText text={"“HAVING THE RIGHT\nGURU, MENTOR OR\nTEAM AROUND YOU\nCAN MAKE THAT\nJOURNEY MUCH\nEASIER.”"} />
                 </h3>
               </div>
-              <div className="fp-origin-placeholder">
+              <div className="fp-origin-placeholder" ref={originWrapper1Ref}>
                 <iframe
+                  ref={originIframe1Ref}
                   className="fp-origin-iframe"
-                  src="https://www.youtube-nocookie.com/embed/CdTs7OTDo-4?autoplay=1&mute=1&loop=1&playlist=CdTs7OTDo-4&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&playsinline=1"
+                  src="https://www.youtube-nocookie.com/embed/CdTs7OTDo-4?autoplay=1&mute=1&loop=1&playlist=CdTs7OTDo-4&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&playsinline=1&enablejsapi=1"
                   title="Jaagi Jaagi | Dhaval Kothari"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
+                  onLoad={() => {
+                    if (originWrapper1Ref.current && ytVisibilityMapRef.current.get(originWrapper1Ref.current)) {
+                      sendYtCommand(originIframe1Ref.current, 'mute');
+                      sendYtCommand(originIframe1Ref.current, 'playVideo');
+                    }
+                  }}
                 />
                 <div className="fp-origin-iframe-shield" />
               </div>
             </div>
             
             <div className="fp-origin-quotes-row">
-              <div className="fp-origin-placeholder">
+              <div className="fp-origin-placeholder" ref={originWrapper2Ref}>
                 <iframe
+                  ref={originIframe2Ref}
                   className="fp-origin-iframe"
-                  src="https://www.youtube-nocookie.com/embed/mXHDn7_tQZI?autoplay=1&mute=1&loop=1&playlist=mXHDn7_tQZI&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&playsinline=1"
+                  src="https://www.youtube-nocookie.com/embed/mXHDn7_tQZI?autoplay=1&mute=1&loop=1&playlist=mXHDn7_tQZI&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&playsinline=1&enablejsapi=1"
                   title="Dhuni Re Dhakhavi | Dhaval Kothari"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
+                  onLoad={() => {
+                    if (originWrapper2Ref.current && ytVisibilityMapRef.current.get(originWrapper2Ref.current)) {
+                      sendYtCommand(originIframe2Ref.current, 'mute');
+                      sendYtCommand(originIframe2Ref.current, 'playVideo');
+                    }
+                  }}
                 />
                 <div className="fp-origin-iframe-shield" />
               </div>
@@ -230,7 +389,7 @@ const FounderPage = () => {
             </div>
           </div>
           <div className="fp-tp-image">
-            <div className="fp-tp-video-wrapper">
+            <div className="fp-tp-video-wrapper" ref={tpWrapperRef}>
               <iframe
                 ref={tpIframeRef}
                 className="fp-tp-video-iframe"
@@ -238,6 +397,12 @@ const FounderPage = () => {
                 title="Turning Point Video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
+                onLoad={() => {
+                  if (tpWrapperRef.current && ytVisibilityMapRef.current.get(tpWrapperRef.current)) {
+                    sendYtCommand(tpIframeRef.current, isTpMuted ? 'mute' : 'unMute');
+                    sendYtCommand(tpIframeRef.current, 'playVideo');
+                  }
+                }}
               />
               <button 
                 type="button"
@@ -342,12 +507,19 @@ const FounderPage = () => {
             <h2><TypewriterText text={"NEVER A ONE-SIZE\nFITS-ALL APPROACH."} /></h2>
           </div>
         </div>
-        <div className="fp-huge-placeholder">
+        <div className="fp-huge-placeholder" ref={hugeWrapperRef}>
           <iframe
-            src="https://www.youtube-nocookie.com/embed/Fmzhobnk2vY?autoplay=1&mute=1&loop=1&playlist=Fmzhobnk2vY&controls=1&modestbranding=1&rel=0&playsinline=1"
+            ref={hugeIframeRef}
+            src="https://www.youtube-nocookie.com/embed/Fmzhobnk2vY?autoplay=1&mute=1&loop=1&playlist=Fmzhobnk2vY&controls=1&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
             title="Unchi Talavadi | Behind The Scenes | Dhaval Kothari"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
+            onLoad={() => {
+              if (hugeWrapperRef.current && ytVisibilityMapRef.current.get(hugeWrapperRef.current)) {
+                sendYtCommand(hugeIframeRef.current, 'mute');
+                sendYtCommand(hugeIframeRef.current, 'playVideo');
+              }
+            }}
           />
         </div>
 

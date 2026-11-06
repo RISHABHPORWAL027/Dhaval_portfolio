@@ -29,7 +29,6 @@ const AllByPlayReelSection = () => {
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true); // Default sound off
   const [activeCardIndex, setActiveCardIndex] = useState(0);
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
   // Auto rotate cards every 4 seconds
   useEffect(() => {
@@ -39,73 +38,52 @@ const AllByPlayReelSection = () => {
     return () => clearInterval(cardTimer);
   }, []);
 
-  // Lazy load video only when approaching viewport (within 400px)
+  // IntersectionObserver for video autoplay based on place on page
   useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setShouldLoadVideo(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '400px' }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  // IntersectionObserver for video autoplay & unmuted policy fallback
-  useEffect(() => {
-    if (!shouldLoadVideo) return;
     const video = videoRef.current;
     if (!video) return;
 
     video.muted = isMuted;
+    video.defaultMuted = true;
+
+    let isIntersecting = false;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          isIntersecting = entry.isIntersecting;
           if (entry.isIntersecting) {
             video.muted = isMuted;
-            video.play().catch((err) => {
-              console.log("Unmuted autoplay restricted by browser policy, playing muted until user gesture:", err);
+            video.play().catch(() => {
               video.muted = true;
-              video.play().catch((e) => console.log("Muted autoplay error:", e));
+              video.play().catch(() => {});
             });
           } else {
             video.pause();
           }
         });
       },
-      { threshold: 0.25 }
+      { threshold: 0.15 }
     );
 
     observer.observe(video);
 
-    return () => {
-      observer.disconnect();
-    };
-  }, [shouldLoadVideo, isMuted]);
-
-  // Global user interaction listener to immediately unmute video on first click/tap if sound is ON
-  useEffect(() => {
-    const handleFirstUserInteraction = () => {
-      if (videoRef.current && !isMuted) {
-        videoRef.current.muted = false;
-        videoRef.current.play().catch(() => {});
+    const handleGesture = () => {
+      if (video && isIntersecting && video.paused) {
+        video.muted = isMuted;
+        video.play().catch(() => {});
       }
     };
 
-    window.addEventListener('click', handleFirstUserInteraction, { once: true });
-    window.addEventListener('touchstart', handleFirstUserInteraction, { once: true });
+    window.addEventListener('scroll', handleGesture, { passive: true });
+    window.addEventListener('touchstart', handleGesture, { passive: true });
+    window.addEventListener('click', handleGesture, { passive: true });
 
     return () => {
-      window.removeEventListener('click', handleFirstUserInteraction);
-      window.removeEventListener('touchstart', handleFirstUserInteraction);
+      observer.disconnect();
+      window.removeEventListener('scroll', handleGesture);
+      window.removeEventListener('touchstart', handleGesture);
+      window.removeEventListener('click', handleGesture);
     };
   }, [isMuted]);
 
@@ -113,7 +91,6 @@ const AllByPlayReelSection = () => {
     if (e && e.stopPropagation) {
       e.stopPropagation();
     }
-    setShouldLoadVideo(true);
     if (videoRef.current) {
       const nextMuted = !isMuted;
       videoRef.current.muted = nextMuted;
@@ -229,16 +206,14 @@ const AllByPlayReelSection = () => {
                   <video
                     ref={videoRef}
                     className="ap-phone-video"
+                    src={allbyplayVideo}
                     loop
                     muted={isMuted}
+                    defaultMuted
                     playsInline
-                    preload="none"
+                    preload="auto"
                     poster={allbyplayPoster}
-                  >
-                    {shouldLoadVideo && (
-                      <source src={allbyplayVideo} type="video/mp4" />
-                    )}
-                  </video>
+                  />
                 </div>
               </div>
 
